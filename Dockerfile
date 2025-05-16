@@ -1,10 +1,14 @@
 FROM php:8.2-apache
 
+# Enable required modules
 RUN a2enmod rewrite
-RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
+
+# Custom Apache configuration
+COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
+
+# Copy application
 COPY . /var/www/html/
 
-WORKDIR /var/www/html/
-
-EXPOSE 80
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
