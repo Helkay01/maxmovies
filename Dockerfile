@@ -1,25 +1,36 @@
 FROM php:8.2-apache
 
-# Enable required modules and configure case sensitivity
-RUN a2enmod rewrite speling && \
-    echo "CheckSpelling On" >> /etc/apache2/apache2.conf && \
-    echo "CheckCaseOnly On" >> /etc/apache2/apache2.conf && \
-    sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libcurl4-openssl-dev \
+    && docker-php-ext-install curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions if needed
-RUN docker-php-ext-install pdo pdo_mysql
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Enable Apache modules
+RUN a2enmod rewrite
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy composer files first to leverage Docker cache
+COPY composer.json composer.lock ./
+
+# Install dependencies (dev dependencies only for development)
+RUN composer install --no-dev --optimize-autoloader
 
 # Copy application files
-COPY . /var/www/html/
+COPY . .
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html && \
-    find /var/www/html -type d -exec chmod 755 {} \; && \
-    find /var/www/html -type f -exec chmod 644 {} \;
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && find /var/www/html -type d -exec chmod 755 {} \; \
+    && find /var/www/html -type f -exec chmod 644 {} \;
 
-WORKDIR /var/www/html
-EXPOSE 8080
-
-# Configure Apache to use Render's PORT
-RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+# Configure Apache for Render.com
+RUN echo "Listen ${PORT:-8080}" > /etc/apache2/ports.conf
 CMD ["apache2-foreground"]
