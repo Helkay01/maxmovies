@@ -6,7 +6,7 @@ use Curl\Curl;
 
 $title = $_GET['t'];
 
-//$year = $_GET['y'];
+
 
 
 $no_space = str_replace(" ", "", $title);
