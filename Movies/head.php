@@ -1,7 +1,15 @@
 <?php
-include "/data/data/com.termux/files/home/vendor/autoload.php";
 
-use Curl\Curl;
+
+echo "Worked";
+
+/*
+
+
+
+//include "/data/data/com.termux/files/home/vendor/autoload.php";
+
+//use Curl\Curl;
 
 
 
