@@ -1,11 +1,13 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-
-    # If request is for an existing file or folder, serve it
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
+    
+    # Allow direct access to existing PHP files
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} \.php$
     RewriteRule ^ - [L]
-
-    # Otherwise, send to index.php
-    RewriteRule ^ index.php [QSA,L]
+    
+    # Standard front controller pattern for frameworks
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
 </IfModule>
