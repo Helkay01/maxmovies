@@ -1,13 +1,16 @@
 <?php
-// router.php
-
-// Parse the requested URL path
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// If the requested file exists, serve it directly
-if ($uri !== '/' && file_exists(__DIR__ . $uri)) {
-    return false; // serve the file as-is
+// Redirect folder URLs missing trailing slash
+if (is_dir(__DIR__ . $uri) && substr($uri, -1) !== '/') {
+    header('Location: ' . $uri . '/');
+    exit;
 }
 
-// Otherwise, route all requests to index.php
+// Serve existing files directly (including PHP files)
+if ($uri !== '/' && file_exists(__DIR__ . $uri)) {
+    return false;  // Serve the requested resource as-is
+}
+
+// Otherwise route to main index.php
 require_once __DIR__ . '/index.php';
