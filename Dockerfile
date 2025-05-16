@@ -1,11 +1,15 @@
 FROM php:8.2-apache
 
-# Enable mod_rewrite and configure case-insensitive matching
+# Enable Apache modules
 RUN a2enmod rewrite && \
-    a2enmod speling && \  # Module for case-insensitive URL matching
-    echo "CheckSpelling On" >> /etc/apache2/apache2.conf && \
-    echo "CheckCaseOnly On" >> /etc/apache2/apache2.conf && \
-    sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+    a2enmod speling
+
+# Configure Apache directory permissions
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+# Add case sensitivity configuration
+RUN echo 'CheckSpelling On' >> /etc/apache2/apache2.conf && \
+    echo 'CheckCaseOnly On' >> /etc/apache2/apache2.conf
 
 # Install PHP extensions if needed
 RUN docker-php-ext-install pdo pdo_mysql
