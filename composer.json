@@ -1,5 +1,5 @@
 {
     "require": {
-        "geoip2/geoip2": "^3.2"
+        "php-curl-class/php-curl-class": "^9.9"
     }
 }
