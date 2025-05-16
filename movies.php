@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+require 'vendor/autoload.php';
 
 // Example usage
 $curl = new \Curl\Curl();
