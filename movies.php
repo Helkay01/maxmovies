@@ -207,8 +207,8 @@
       <div class="movie-info">
         <h1>
         	<php
-        		if(isset($_GET['t'])) {
-        			echo $_GET['t'];
+        		if(isset($_GET['title'])) {
+        			echo $_GET['title'];
         		}
         	?>
         </h1>
@@ -263,16 +263,14 @@
         	
         	
         	<ul>
-        		<li><a href="https://nkiri.com/s=
-        		<?php 
+        		<li><a href="https://nkiri.com/?s=<?php 
         			if(isset($_GET['t'])) { 
         				echo $_GET['t'];
         			} 
         		?>">Download Link</a></li>
         			
         			
-        		<li><a href="https://waploaded.co/search/
-        		<?php 
+        		<li><a href="https://waploaded.co/search/<?php 
         			if(isset($_GET['t'])) { 
         				echo $_GET['t'];
         			} 
@@ -280,8 +278,7 @@
         	    
         	    
         	    
-        	    <li><a href="https://plutomovies.com/search/
-        	    <?php 
+        	    <li><a href="https://plutomovies.com/search/<?php 
         	    	if(isset($_GET['t'])) { 
         	    		echo $_GET['t']; 
         	    	} 
@@ -289,16 +286,14 @@
            		
            		
            		
-           		<li><a href="https://netnaija.xyz/?s=
-           		<?php 
+           		<li><a href="https://netnaija.xyz/?s=<?php 
            			if(isset($_GET['t'])) { 
            				echo $_GET['t']; 
            			} 
            		?>">Download Link</a></li>
          		
          		
-         		<li><a href="https://9jarocks.net/findx?search=
-         		<?php 
+         		<li><a href="https://9jarocks.net/findx?search=<?php 
          			if(isset($_GET['t'])) { 
          				echo $_GET['t']; 
          			} 
