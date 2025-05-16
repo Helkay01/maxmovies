@@ -1,16 +1,12 @@
 <?php
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// Get the requested URI path
+$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+$file = __DIR__ . $uri;
 
-// Redirect folder URLs missing trailing slash
-if (is_dir(__DIR__ . $uri) && substr($uri, -1) !== '/') {
-    header('Location: ' . $uri . '/');
-    exit;
+// If the file exists (PHP, HTML, image, etc.), serve it directly
+if ($uri !== '/' && file_exists($file)) {
+    return false; // Let PHP's built-in web server handle it
 }
 
-// Serve existing files directly (including PHP files)
-if ($uri !== '/' && file_exists(__DIR__ . $uri)) {
-    return false;  // Serve the requested resource as-is
-}
-
-// Otherwise route to main index.php
+// Otherwise, fallback to index.php (e.g. for custom 404 or SPA behavior)
 require_once __DIR__ . '/index.php';
