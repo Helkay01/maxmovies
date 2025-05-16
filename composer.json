@@ -1,9 +1,12 @@
 {
     "require": {
         "php-curl-class/php-curl-class": "^9.9"
+<<<<<<< HEAD
     },
     "config": {
         "optimize-autoloader": true,
         "platform-check": false
+=======
+>>>>>>> d93a62033ab4f52a076450e8e0cf9dbefb907725
     }
 }

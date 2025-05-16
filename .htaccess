@@ -1,4 +1,5 @@
 <IfModule mod_rewrite.c>
+<<<<<<< HEAD
     Options +FollowSymLinks +SymLinksIfOwnerMatch
     RewriteEngine On
     
@@ -12,12 +13,32 @@
     RewriteRule ^(.*)$ ${tolower:$1} [R=301,L]
     
     # Finally, route to index.php if using a framework
+=======
+    RewriteEngine On
+    
+    # Allow direct access to files
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+    
+    # Redirect to HTTPS on Render.com
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Front controller pattern
+>>>>>>> d93a62033ab4f52a076450e8e0cf9dbefb907725
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [L]
 </IfModule>
 
+<<<<<<< HEAD
 <IfModule mod_speling.c>
     CheckSpelling On
     CheckCaseOnly On
+=======
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+>>>>>>> d93a62033ab4f52a076450e8e0cf9dbefb907725
 </IfModule>
