@@ -1,7 +1,10 @@
 <?php
-  $ua = $_SERVER['HTTP_USER_AGENT'];
-if(!strpos("Mobile")) {
-	echo 'Desktop';
+  $userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+if (preg_match('/(Windows|Macintosh|Linux)/', $userAgent)) {
+    // Desktop device detected
+} else {
+    // Mobile or other device detected
 }
 
 ?>
