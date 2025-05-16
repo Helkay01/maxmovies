@@ -1,18 +1,23 @@
 <IfModule mod_rewrite.c>
+    Options +FollowSymLinks +SymLinksIfOwnerMatch
     RewriteEngine On
     
-    # Allow direct access to existing PHP files
+    # First try exact match
     RewriteCond %{REQUEST_FILENAME} -f
-    RewriteCond %{REQUEST_FILENAME} \.php$
     RewriteRule ^ - [L]
     
-    # Allow access to existing non-PHP files
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteCond %{REQUEST_FILENAME} !\.php$
-    RewriteRule ^ - [L]
+    # Then try case-corrected version if mod_speling is on
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} [A-Z]
+    RewriteRule ^(.*)$ ${tolower:$1} [R=301,L]
     
-    # Route everything else to index.php (for frameworks)
+    # Finally, route to index.php if using a framework
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_speling.c>
+    CheckSpelling On
+    CheckCaseOnly On
 </IfModule>
