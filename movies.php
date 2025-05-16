@@ -265,7 +265,7 @@
         	<ul>
         		<li><a href="https://nkiri.com/s=
         		<?php 
-        			if(isset($_GET['t']) { 
+        			if(isset($_GET['t'])) { 
         				echo $_GET['t'];
         			} 
         		?>">Download Link</a></li>
@@ -273,7 +273,7 @@
         			
         		<li><a href="https://waploaded.co/search/
         		<?php 
-        			if(isset($_GET['t']) { 
+        			if(isset($_GET['t'])) { 
         				echo $_GET['t'];
         			} 
         		?>/page/1?type=">Download Link</a></li>
@@ -282,7 +282,7 @@
         	    
         	    <li><a href="https://plutomovies.com/search/
         	    <?php 
-        	    	if(isset($_GET['t']) { 
+        	    	if(isset($_GET['t'])) { 
         	    		echo $_GET['t']; 
         	    	} 
         	    ?>/page/1">Download Link</a></li>	
@@ -291,7 +291,7 @@
            		
            		<li><a href="https://netnaija.xyz/?s=
            		<?php 
-           			if(isset($_GET['t']) { 
+           			if(isset($_GET['t'])) { 
            				echo $_GET['t']; 
            			} 
            		?>">Download Link</a></li>
@@ -299,7 +299,7 @@
          		
          		<li><a href="https://9jarocks.net/findx?search=
          		<?php 
-         			if(isset($_GET['t']) { 
+         			if(isset($_GET['t'])) { 
          				echo $_GET['t']; 
          			} 
          		?>">Download Link</a></li>       	
