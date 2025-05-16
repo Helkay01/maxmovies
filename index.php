@@ -1,3 +1,11 @@
+<?php
+  $ua = $_SERVER['HTTP_USER_AGENT'];
+if(!strpos("Mobile")) {
+	echo 'Desktop';
+}
+
+?>
+
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
