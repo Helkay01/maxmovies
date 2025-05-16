@@ -1,12 +1,18 @@
 <?php
-// Get the requested URI path
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-$file = __DIR__ . $uri;
+$fullPath = __DIR__ . $uri;
 
-// If the file exists (PHP, HTML, image, etc.), serve it directly
-if ($uri !== '/' && file_exists($file)) {
-    return false; // Let PHP's built-in web server handle it
+// ✅ If requested path is a file, serve it directly (e.g., Movies/test.php)
+if (is_file($fullPath)) {
+    // This will execute PHP files and allow access to media, images, etc.
+    return false;
 }
 
-// Otherwise, fallback to index.php (e.g. for custom 404 or SPA behavior)
-require_once __DIR__ . '/index.php';
+// ✅ If it’s a directory with index.php (e.g., /Movies/)
+if (is_dir($fullPath) && is_file($fullPath . '/index.php')) {
+    require $fullPath . '/index.php';
+    exit;
+}
+
+// ❌ If file/folder doesn't exist, fallback to main index
+require __DIR__ . '/index.php';
