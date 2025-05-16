@@ -207,8 +207,8 @@
       <div class="movie-info">
         <h1>
         	<php
-        		if(isset($_GET['title'])) {
-        			echo $_GET['title'];
+        		if(isset($_GET['t'])) {
+        			echo $_GET['t'];
         		}
         	?>
         </h1>
@@ -217,8 +217,8 @@
         
         <p hidde>
         	 <php
-        	 	if(isset($_GET['title'])) {
-        	 		echo $_GET['title'];
+        	 	if(isset($_GET['t'])) {
+        	 		echo $_GET['t'];
         	 	}
         	 ?>
         	 
