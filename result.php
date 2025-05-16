@@ -18,13 +18,13 @@
 <script>  
 	$("document").ready(function() {
 		
-		var title = $("#movieGrid").html();
+		var title = $("#t").html();
 		
 		$.ajax({
 			url: '/finder.php',
 			data: {t: title},
 			success: function(data) {
-				$(".rounded-lg").html(data)
+				$("#movieGrid").html(data)
 			}
 		})
 	
