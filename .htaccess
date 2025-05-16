@@ -1,12 +1,17 @@
 <IfModule mod_rewrite.c>
+    Options +FollowSymLinks +SymLinksIfOwnerMatch
     RewriteEngine On
     
-    # Allow direct access to existing PHP files
+    # Preserve original case in URLs
+    RewriteMap lowercase int:tolower
+    RewriteCond %{REQUEST_URI} [A-Z]
+    RewriteRule ^(.*?[A-Z]+.*)$ ${lowercase:$1} [R=301,L]
+    
+    # Allow direct access to existing files
     RewriteCond %{REQUEST_FILENAME} -f
-    RewriteCond %{REQUEST_FILENAME} \.php$
     RewriteRule ^ - [L]
     
-    # Standard front controller pattern for frameworks
+    # Route everything else to index.php if needed
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [L]
