@@ -1,12 +1,5 @@
 <?php
-  $userAgent = $_SERVER['HTTP_USER_AGENT'];
-
-if (preg_match('/(Windows|Macintosh|Linux)/', $userAgent)) {
-    // Desktop device detected
-} else {
-    // Mobile or other device detected
-}
-
+  
 ?>
 
 <!DOCTYPE html><html lang="en">
