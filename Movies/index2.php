@@ -1,7 +1,6 @@
 <?php
 if(!isset($_COOKIE['imd'])) {
 
-header("Location: http://0.0.0.0:8080/search.php");
 
 
 include "header.php";
