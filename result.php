@@ -18,7 +18,7 @@
 <script>  
 	$("document").ready(function() {
 		
-		var title = $("#t").html();
+		var title = $("#movieGrid").html();
 		
 		$.ajax({
 			url: '/finder.php',
@@ -56,10 +56,10 @@
 
 
 
-		<div class="rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-slate-800">
+    <div id="movieGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
 		
 		
-		</div>
+	</div>
 		
 		
 
