@@ -1,5 +1,5 @@
 <?php
-require "/data/data/com.termux/files/home/vendor/autoload.php";
+// require "/data/data/com.termux/files/home/vendor/autoload.php";
 
 use Curl\Curl;
 
