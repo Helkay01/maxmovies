@@ -19,4 +19,4 @@ RUN composer install --no-dev --no-interaction --optimize-autoloader
 EXPOSE 10000
 
 # Start the built-in PHP server
-CMD ["php", "-S", "0.0.0.0:10000", "-t", "."]
+CMD ["php", "-S", "0.0.0.0:10000", "-t", ".", "router.php"]
