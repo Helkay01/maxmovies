@@ -110,4 +110,4 @@ else {
 		<li hidden id="more-apps">More Apps</li>
 	</div>
 	
-	
+*/	
