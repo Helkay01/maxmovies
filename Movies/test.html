@@ -1,0 +1,115 @@
+<style type="text/css">
+#elementToCheck {
+z-index: 200;
+}
+
+
+</style>
+<div id="elementToCheck">Click Me</div>
+
+<script type="text/javascript">
+const elementToCheck = document.getElementById('elementToCheck');
+     
+     elementToCheck.addEventListener('mouseover', function() {
+         // Code to retrieve and log the z-index value
+         const zIndexValue = window.getComputedStyle(elementToCheck).getPropertyValue('z-index');
+         alert('z-index value: '+ zIndexValue);
+
+     });
+     
+
+window.onload = function() {
+
+var img = document.querySelector("#m");
+
+
+
+img.oncontextmenu = function(e) {
+	e.preventDefault();
+}
+
+
+
+}
+
+</script>
+
+
+
+<img id="m" width="300" src="img.jpg">
+
+
+
+
+<!--
+
+
+
+</script>
+
+<noscript>
+  <meta http-equiv="refresh" content="0;url=nojavascript.html">
+</noscript>
+
+
+
+
+<div style="margin-top: 80px;"><img style="margin: 15px;" src="'+img+'" id="m-img" alt="mImage"><br><center><h1>'+title+' ('+year+')</h1></center><br><br><a style="margin: 15px; color: red;" href="#downloadLinks"><b>DOWNLOAD</b></a><br><br><br><div style="margin-top: 50px; margin-left: 10px"><label style="padding: 5px; border-bottom: 5px solid red;"><b>Review</b></label><br><br><center><div id="review-div">Fetching from the server. Please wait...</div></center></div><div style="margin-top: 80px; backgroun: white; color: blac; " id="downloadLinks" style=" margin-top: 100px; margin-left: 10px"><div style="display: flex;"><span style="margin-right: 10px;" ><b><i>Creating download links...</i></b></span><div id="fetch-links-loader"></div></div><br><div><i>Download from these fast servers.</i></div><br><div id="fz" class="webLinks"><li><a style="color: lightblue;" href=""><b>Download Link</b></a></li></div><div id="net" class="webLinks"></div><div id="nk" class="webLinks"></div><div id="pluto" class="webLinks"></div><div id="staga" class="webLinks"></div></div><br></div>
+
+
+
+<div style="margin-top: 80px;">
+	<img style="margin: 15px;" src="'+img+'" id="m-img" alt="mImage">
+	
+	<br>
+	
+	<center><h1>'+title+' ('+year+')</h1></center>
+	
+	<br><br>
+	
+	<a style="margin: 15px; color: red;" href="#downloadLinks"><b>DOWNLOAD</b></a>
+	
+	<br><br><br>
+
+	
+	<div style="margin-top: 50px; margin-left: 10px">
+		<label style="padding: 5px; border-bottom: 5px solid red;"><b>Review</b></label>
+		<br><br>
+		
+		<center>
+			<div id="review-div">Fetching from the server. Please wait...</div>
+		</center>
+	</div>
+	
+	
+	<div style="margin-top: 80px; backgroun: white; color: blac; " id="downloadLinks" style=" margin-top: 100px; margin-left: 10px">
+		<div style="display: flex;">
+			<span style="margin-right: 10px;" ><b><i>Creating download links...</i></b></span>
+			<div id="fetch-links-loader"></div>
+		</div>
+		
+		<br>
+		
+		<div><i>Download from these fast servers.</i></div>
+		
+		<br>
+		
+		
+		
+		<div id="fz" class="webLinks">
+			<li><a style="color: lightblue;" href=""><b>Download Link</b></a></li>
+		</div>
+		
+		<div id="net" class="webLinks"></div>
+		
+		<div id="nk" class="webLinks"></div>
+		
+		<div id="pluto" class="webLinks"></div>
+		
+		<div id="staga" class="webLinks"></div>
+	</div>
+	
+	
+	<br>
+	
+</div>
