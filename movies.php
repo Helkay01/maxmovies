@@ -1,3 +1,8 @@
+<?php
+include 'err.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
