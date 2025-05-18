@@ -1,13 +1,14 @@
 {
-  "name": "puppeteer-crawler",
+  "name": "your-app",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "postinstall": "puppeteer install",
     "start": "node index.js",
-    "build": "apt-get update && apt-get install -y wget && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google.list && apt-get update && apt-get install -y google-chrome-stable"
+    "build": "apt-get update && apt-get install -y wget && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google.list && apt-get update && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1"
   },
   "dependencies": {
-    "puppeteer": "^22.8.2"
+    "puppeteer": "^21.0.0"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
