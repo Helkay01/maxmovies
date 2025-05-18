@@ -6,6 +6,9 @@ use GeoIp2\Database\Reader;
 
 $curl = new Curl();
 
+
+$curl->disableTimeout();
+
 // Configure cURL options
 $cookieFile = 'c.txt';
 $curl->setOpt(CURLOPT_COOKIEJAR, $cookieFile);
