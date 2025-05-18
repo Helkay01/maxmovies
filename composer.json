@@ -1,6 +1,8 @@
 {
     "require": {
-        "php-curl-class/php-curl-class": "^9.9"
+        "php-curl-class/php-curl-class": "^9.9",
+        "geoip2/geoip2": "^3.2",
+        "symfony/panther": "^2.2"
     },
     "config": {
         "optimize-autoloader": true,
