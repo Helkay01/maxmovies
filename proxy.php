@@ -20,12 +20,22 @@ $curl->setOpt(CURLOPT_RETURNTRANSFER, true);
 $curl->setOpt(CURLOPT_SSL_VERIFYPEER, true); // Disable for testing, enable in production
 $curl->setOpt(CURLOPT_SSL_VERIFYHOST, 2);
 
+
+
+$userAgents = [
+    'Mozilla/5.0 (Linux; Android 15; en; Infinix X6857 Build/SP1A.210812.016) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.7103.60 HiBrowser/v2.24.5.2 UWS/ Mobile Safari/537.36',
+    'Mozilla/5.0 (Linux; Android 15; Infinix X6858 Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/135.0.7049.105 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/510.0.0.72.41;IABMV/1;]',
+];
+
+$curl->setUserAgent($userAgents[array_rand($userAgents)]);
+
+
+
 // Set headers to mimic a browser
 $headers = [
     'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language: en-US,en;q=0.9',
-    'Connection: keep-alive',
-    'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    'Connection: keep-alive'
 ];
 $curl->setOpt(CURLOPT_HTTPHEADER, $headers);
 
