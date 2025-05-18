@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=8.0",
         "ext-curl": "*"
     },
     "require-dev": {
@@ -27,9 +27,9 @@
         "friendsofphp/php-cs-fixer": "*",
         "phpcompatibility/php-compatibility": "dev-develop",
         "phpcsstandards/phpcsutils": "@alpha",
+        "phpstan/phpstan": "*",
         "phpunit/phpunit": "*",
-        "squizlabs/php_codesniffer": "*",
-        "vimeo/psalm": ">=0.3.63"
+        "squizlabs/php_codesniffer": "*"
     },
     "suggest": {
         "ext-mbstring": "*"

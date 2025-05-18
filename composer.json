@@ -1,11 +1,7 @@
 {
     "require": {
-        "php-curl-class/php-curl-class": "^9.9",
+        "maxmind-db/reader": "^1.12",
         "geoip2/geoip2": "^3.2",
-        "symfony/panther": "^2.2"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "platform-check": false
+        "php-curl-class/php-curl-class": "^12.0"
     }
 }

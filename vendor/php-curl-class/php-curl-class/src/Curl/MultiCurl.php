@@ -111,7 +111,7 @@ class MultiCurl extends BaseCurl
             // Attempt to resume download only when a temporary download file exists and is not empty.
             if (is_file($download_filename) && $filesize = filesize($download_filename)) {
                 $first_byte_position = $filesize;
-                $range = $first_byte_position . '-';
+                $range = (string)$first_byte_position . '-';
                 $curl->setRange($range);
                 $curl->fileHandle = fopen($download_filename, 'ab');
 
@@ -127,7 +127,10 @@ class MultiCurl extends BaseCurl
             } else {
                 $curl->fileHandle = fopen('php://temp', 'wb');
                 $curl->downloadCompleteCallback = function ($instance, $fh) use ($filename) {
-                    file_put_contents($filename, stream_get_contents($fh));
+                    $contents = stream_get_contents($fh);
+                    if ($contents !== false) {
+                        file_put_contents($filename, $contents);
+                    }
                 };
             }
         }
@@ -348,6 +351,7 @@ class MultiCurl extends BaseCurl
     /**
      * Close
      */
+    #[\Override]
     public function close()
     {
         foreach ($this->queuedCurls as $curl) {
@@ -376,6 +380,7 @@ class MultiCurl extends BaseCurl
      * @param $key
      * @param $value
      */
+    #[\Override]
     public function setCookie($key, $value)
     {
         $this->cookies[$key] = $value;
@@ -386,6 +391,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $cookies
      */
+    #[\Override]
     public function setCookies($cookies)
     {
         foreach ($cookies as $key => $value) {
@@ -398,6 +404,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $string
      */
+    #[\Override]
     public function setCookieString($string)
     {
         $this->setOpt(CURLOPT_COOKIE, $string);
@@ -408,6 +415,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $cookie_file
      */
+    #[\Override]
     public function setCookieFile($cookie_file)
     {
         $this->setOpt(CURLOPT_COOKIEFILE, $cookie_file);
@@ -418,6 +426,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $cookie_jar
      */
+    #[\Override]
     public function setCookieJar($cookie_jar)
     {
         $this->setOpt(CURLOPT_COOKIEJAR, $cookie_jar);
@@ -431,6 +440,7 @@ class MultiCurl extends BaseCurl
      * @param $key
      * @param $value
      */
+    #[\Override]
     public function setHeader($key, $value)
     {
         $this->headers[$key] = $value;
@@ -444,6 +454,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $headers
      */
+    #[\Override]
     public function setHeaders($headers)
     {
         if (ArrayUtil::isArrayAssoc($headers)) {
@@ -454,7 +465,7 @@ class MultiCurl extends BaseCurl
             }
         } else {
             foreach ($headers as $header) {
-                list($key, $value) = explode(':', $header, 2);
+                list($key, $value) = array_pad(explode(':', $header, 2), 2, '');
                 $key = trim($key);
                 $value = trim($value);
                 $this->headers[$key] = $value;
@@ -469,6 +480,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $mixed boolean|callable
      */
+    #[\Override]
     public function setJsonDecoder($mixed)
     {
         if ($mixed === false) {
@@ -483,6 +495,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $mixed boolean|callable
      */
+    #[\Override]
     public function setXmlDecoder($mixed)
     {
         if ($mixed === false) {
@@ -512,6 +525,7 @@ class MultiCurl extends BaseCurl
      * @param $option
      * @param $value
      */
+    #[\Override]
     public function setOpt($option, $value)
     {
         $this->options[$option] = $value;
@@ -536,6 +550,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $options
      */
+    #[\Override]
     public function setOpts($options)
     {
         foreach ($options as $option => $value) {
@@ -578,6 +593,7 @@ class MultiCurl extends BaseCurl
         $unit = strtolower($matches['3']);
 
         // Convert interval to seconds based on unit.
+        $interval_seconds = '';
         if ($unit === 's') {
             $interval_seconds = $interval * 1;
         } elseif ($unit === 'm') {
@@ -586,7 +602,7 @@ class MultiCurl extends BaseCurl
             $interval_seconds = $interval * 3600;
         }
 
-        $this->rateLimit = $max_requests . '/' . $interval . $unit;
+        $this->rateLimit = (string)$max_requests . '/' . (string)$interval . $unit;
         $this->rateLimitEnabled = true;
         $this->maxRequests = $max_requests;
         $this->interval = $interval;
@@ -607,6 +623,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $mixed
      */
+    #[\Override]
     public function setRetry($mixed)
     {
         $this->retry = $mixed;
@@ -618,6 +635,7 @@ class MultiCurl extends BaseCurl
      * @param $url
      * @param $mixed_data
      */
+    #[\Override]
     public function setUrl($url, $mixed_data = '')
     {
         $built_url = Url::buildUrl($url, $mixed_data);
@@ -747,6 +765,7 @@ class MultiCurl extends BaseCurl
     /**
      * Stop
      */
+    #[\Override]
     public function stop()
     {
         // Remove any queued curl requests.
@@ -774,6 +793,7 @@ class MultiCurl extends BaseCurl
      *
      * @param $key
      */
+    #[\Override]
     public function unsetHeader($key)
     {
         unset($this->headers[$key]);
@@ -925,11 +945,17 @@ class MultiCurl extends BaseCurl
      */
     private function waitUntilRequestQuotaAvailable()
     {
-        $sleep_until = $this->currentStartTime + $this->intervalSeconds;
+        $sleep_until = (float)($this->currentStartTime + $this->intervalSeconds);
         $sleep_seconds = $sleep_until - microtime(true);
 
         // Avoid using time_sleep_until() as it appears to be less precise and not sleep long enough.
-        usleep((int) $sleep_seconds * 1000000);
+        // Avoid using usleep(): "Values larger than 1000000 (i.e. sleeping for
+        //   more than a second) may not be supported by the operating system.
+        //   Use sleep() instead."
+        $sleep_seconds_int = (int)$sleep_seconds;
+        if ($sleep_seconds_int >= 1) {
+            sleep($sleep_seconds_int);
+        }
 
         // Ensure that enough time has passed as usleep() may not have waited long enough.
         $this->currentStartTime = microtime(true);
@@ -941,5 +967,10 @@ class MultiCurl extends BaseCurl
         }
 
         $this->currentRequestCount = 0;
+    }
+
+    public function getActiveCurls()
+    {
+        return $this->activeCurls;
     }
 }
