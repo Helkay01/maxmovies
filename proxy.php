@@ -15,7 +15,7 @@ $curl->setOpt(CURLOPT_RETURNTRANSFER, true);
 
 // SSL configuration - better to verify but disable if needed
 $curl->setOpt(CURLOPT_SSL_VERIFYPEER, true); // Disable for testing, enable in production
-$curl->setOpt(CURLOPT_SSL_VERIFYHOST, 1); // Disable for testing, enable in production
+$curl->setOpt(CURLOPT_SSL_VERIFYHOST, 2);
 
 // Set headers to mimic a browser
 $headers = [
