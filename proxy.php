@@ -37,10 +37,7 @@ $curl->get('https://www.freeproxy.world/', [
 ]);
 
 if ($curl->error) {
-    echo 'Error: ' . $curl->errorMessage . "\n";
-    echo 'HTTP Status: ' . $curl->httpStatusCode . "\n";
-    echo 'Response: ' . $curl->response . "\n";
-    $curl->diagnose();
+    //error
 } else {
     $html = $curl->response;
     $fpDom = new DOMDocument();
