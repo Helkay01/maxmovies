@@ -2,6 +2,11 @@
 
 include 'err.php';
 
+
+echo $_SERVER['REMOTE_ADDR'];
+
+
+
 ?>
 
 <!DOCTYPE html><html lang="en">
