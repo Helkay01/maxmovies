@@ -15,7 +15,7 @@ function getClientIP() {
 
 $clientIP = getClientIP();
 echo "User's IP: " . $clientIP;
-"/
+*/
 
 
 
