@@ -2,7 +2,7 @@
 
 include 'err.php';
 
-
+/*
 function getClientIP() {
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         return $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -15,6 +15,14 @@ function getClientIP() {
 
 $clientIP = getClientIP();
 echo "User's IP: " . $clientIP;
+"/
+
+
+
+print_r($_SERVER);
+
+
+
 
 
 
