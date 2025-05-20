@@ -904,7 +904,8 @@ try {
     
     // Create DateTime in the given timezone
     $dt = new DateTime("now", new DateTimeZone($timezone));
-    $formattedDate = $dt->format('Y-m-d H:i:s');
+    $formattedDate = $dt->format('Y-m-d');
+    $time = $dt->format('H:i:s');
     $abbreviation = $dt->format('T');
     $offsetSeconds = $dt->getOffset();
     $offsetFormatted = sprintf('%+03d:%02d', $offsetSeconds / 3600, abs($offsetSeconds % 3600) / 60);
@@ -929,6 +930,7 @@ try {
     error_log("Error processing IP $ip: " . $e->getMessage());
     continue;
 }
+
 
 
 
