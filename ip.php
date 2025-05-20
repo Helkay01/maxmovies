@@ -923,7 +923,7 @@ try {
         'timezone_abbr' => $abbreviation,
         'utc_offset' => $offsetFormatted, 
         'utc_designator' => $utcDesignator,
-        'current_time' => $formattedDate,
+        'current_time' => $time,
     ];
 } catch (Exception $e) {
     // Log error but continue with next IP
