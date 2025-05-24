@@ -1,9 +1,3 @@
-<?php
-
-  include 'err.php';
-	
-?>
-
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -46,8 +40,7 @@
 			
 </script>
   
-  
-  
+
   
 </head>
 <body class="text-white font-sans">
@@ -62,10 +55,16 @@
 
 
 
-    <div id="movieGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-		
-		
-	</div>
+<section class="p-8">
+  
+  
+  <h2 class="text-3xl font-semibold mb-6">Popular Movies</h2>
+  <div id="movieGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+  </div>
+  
+</section> 
+
 		
 		
 
