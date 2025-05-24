@@ -131,7 +131,7 @@ div#vplayer {
 
 
 	
-	<video style="" 
+	<video style="border: 1px solid red" 
 		src=""
 		preload="metadata"
 		data-video=""
