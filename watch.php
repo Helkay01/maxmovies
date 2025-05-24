@@ -104,11 +104,13 @@ $("document").ready(function() {
     $('span#fs').hide();
     
     
-    
+    var title = $("#mdeets").data("title");
+    var year = $("#mdeets").data("year");
+
     //Get movies
     $.ajax({
     	url: '/fz.php',
-    	data: {t: $("mdeets").data("title"), y: $("mdeets").data("year")},
+    	data: {t: title, y: year},
     	success: function(data) {
     		alert(data);
     	}
