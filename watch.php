@@ -139,9 +139,7 @@ div#vplayer {
 
 
 
-<?php
-include "head.php";		
-?>
+
 
 
 
