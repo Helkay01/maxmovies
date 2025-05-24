@@ -107,7 +107,7 @@ $("document").ready(function() {
     
     //Get movies
     $.ajax({
-    	url: 'fz.php',
+    	url: '/fz.php',
     	data: {t: $("#mdeets").data("title"), y: $("#mdeets").data("year")},
     	success: function(data) {
     		alert(data);
