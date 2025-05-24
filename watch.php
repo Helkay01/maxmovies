@@ -102,6 +102,19 @@ $("document").ready(function() {
     
     
     $('span#fs').hide();
+    
+    
+    
+    //Get movies
+    $.ajax({
+    	url: 'fz.php',
+    	data: {t: $("mdeets").data("title"), y: $("mdeets").data("year")},
+    	success: function(data) {
+    		alert(data);
+    	}
+    });
+    
+    
      
 });
     
@@ -126,12 +139,14 @@ div#vplayer {
 
 
 
-
+<?php
+include "head.php";		
+?>
 
 
 
 	
-	<video style="border: 1px solid red" 
+	<video style="" 
 		src=""
 		preload="metadata"
 		data-video=""
@@ -147,7 +162,9 @@ div#vplayer {
 
 
 
-
+<div hidden data-year="<?php echo $_GET['t']; ?>"
+data-title="<?php echo $_GET['y']; ?>"
+ id="mdeets"></div>
 
 <!--
 <div style="margin-top: 20px" id="similar">
