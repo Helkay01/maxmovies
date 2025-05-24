@@ -19,7 +19,7 @@ echo "User's IP: " . $clientIP;
 
 
 
-print_r($_SERVER);
+//print_r($_SERVER);
 
 
 
