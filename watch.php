@@ -162,8 +162,7 @@ div#vplayer {
 
 
 
-<div hidden data-year="<?php echo $_GET['t
-y']; ?>"
+<div hidden data-year="<?php echo $_GET['y']; ?>"
 data-title="<?php echo $_GET['t']; ?>"
  id="mdeets"></div>
 
