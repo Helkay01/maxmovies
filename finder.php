@@ -81,7 +81,7 @@ if($curl->getHttpStatusCode() === 200) {
 
 		
 		$output[] = '			
-			<a href="/movies.php?t='.$mTitle.'&y='.$yr2.'&poster='.$img.'">
+			<a href="/watch.php?t='.$mTitle.'&y='.$yr2.'&poster='.$img.'">
 				<img src="'.$img.'" alt="" class="w-full h-60 object-cover">
 				<div class="p-4">
 					<h3 class="text-lg font-semibold">'.$mTitle.' '.$yr2.'</h3>
