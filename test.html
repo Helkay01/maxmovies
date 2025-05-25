@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Fingerprinting Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .passed {
+            color: green;
+            font-weight: bold;
+        }
+        .failed {
+            color: red;
+            font-weight: bold;
+        }
+        .warning {
+            color: orange;
+            font-weight: bold;
+        }
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Anti-Fingerprinting Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>1. Basic Browser Info</h2>
+        <p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+        <p><strong>Platform:</strong> <span id="platform"></span></p>
+        <p><strong>Result:</strong> <span id="basicInfoResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Screen Properties</h2>
+        <p><strong>Screen Size:</strong> <span id="screenSize"></span></p>
+        <p><strong>Color Depth:</strong> <span id="colorDepth"></span></p>
+        <p><strong>Pixel Ratio:</strong> <span id="pixelRatio"></span></p>
+        <p><strong>Result:</strong> <span id="screenResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>3. WebGL Fingerprinting</h2>
+        <p><strong>WebGL Supported:</strong> <span id="webglSupported"></span></p>
+        <p><strong>WebGL Renderer:</strong> <span id="webglRenderer"></span></p>
+        <p><strong>Result:</strong> <span id="webglResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Canvas Fingerprinting</h2>
+        <canvas id="testCanvas" width="200" height="50"></canvas>
+        <p><strong>Canvas Fingerprint:</strong> <span id="canvasHash"></span></p>
+        <p><strong>Result:</strong> <span id="canvasResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Audio Context Fingerprinting</h2>
+        <p><strong>AudioContext Supported:</strong> <span id="audioSupported"></span></p>
+        <p><strong>Audio Fingerprint:</strong> <span id="audioHash"></span></p>
+        <p><strong>Result:</strong> <span id="audioResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>6. Hardware Information</h2>
+        <p><strong>CPU Cores:</strong> <span id="cpuCores"></span></p>
+        <p><strong>Device Memory:</strong> <span id="deviceMemory"></span></p>
+        <p><strong>Max Touch Points:</strong> <span id="maxTouchPoints"></span></p>
+        <p><strong>Result:</strong> <span id="hardwareResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>7. Battery Status</h2>
+        <p><strong>Battery API Available:</strong> <span id="batteryApi"></span></p>
+        <p><strong>Result:</strong> <span id="batteryResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>8. Sensors</h2>
+        <p><strong>Device Orientation:</strong> <span id="deviceOrientation"></span></p>
+        <p><strong>Device Motion:</strong> <span id="deviceMotion"></span></p>
+        <p><strong>Result:</strong> <span id="sensorResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>9. Storage Access</h2>
+        <p><strong>Cookies:</strong> <span id="cookieTest"></span></p>
+        <p><strong>LocalStorage:</strong> <span id="localStorageTest"></span></p>
+        <p><strong>SessionStorage:</strong> <span id="sessionStorageTest"></span></p>
+        <p><strong>IndexedDB:</strong> <span id="indexedDbTest"></span></p>
+        <p><strong>Result:</strong> <span id="storageResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>10. WebRTC</h2>
+        <p><strong>WebRTC IP Leak:</strong> <span id="webrtcIp"></span></p>
+        <p><strong>Result:</strong> <span id="webrtcResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>11. Font Fingerprinting</h2>
+        <p><strong>Available Fonts:</strong> <span id="fontList"></span></p>
+        <p><strong>Result:</strong> <span id="fontResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>12. Plugin Detection</h2>
+        <p><strong>Plugins Detected:</strong> <span id="pluginList"></span></p>
+        <p><strong>Result:</strong> <span id="pluginResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>13. Timezone Detection</h2>
+        <p><strong>Timezone:</strong> <span id="timezone"></span></p>
+        <p><strong>Result:</strong> <span id="timezoneResult" class="warning">Checking...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>Final Results</h2>
+        <p><strong>Total Tests Passed:</strong> <span id="passedCount">0</span>/13</p>
+        <p><strong>Privacy Score:</strong> <span id="privacyScore">0</span>%</p>
+        <button id="runTests">Run Tests Again</button>
+    </div>
+
+    <script>
+        // Test results
+        let testResults = {
+            basicInfo: false,
+            screen: false,
+            webgl: false,
+            canvas: false,
+            audio: false,
+            hardware: false,
+            battery: false,
+            sensors: false,
+            storage: false,
+            webrtc: false,
+            fonts: false,
+            plugins: false,
+            timezone: false
+        };
+
+        // Run all tests
+        function runAllTests() {
+            resetResults();
+            testBasicInfo();
+            testScreenProperties();
+            testWebGL();
+            testCanvasFingerprinting();
+            testAudioContext();
+            testHardwareInfo();
+            testBatteryAPI();
+            testSensors();
+            testStorage();
+            testWebRTC();
+            testFonts();
+            testPlugins();
+            testTimezone();
+            updateFinalResults();
+        }
+
+        function resetResults() {
+            for (let key in testResults) {
+                testResults[key] = false;
+            }
+            document.querySelectorAll('.warning').forEach(el => {
+                el.textContent = 'Checking...';
+                el.className = 'warning';
+            });
+        }
+
+        function testBasicInfo() {
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform;
+            
+            document.getElementById('userAgent').textContent = userAgent;
+            document.getElementById('platform').textContent = platform;
+            
+            // Check if values are randomized or blocked
+            const isGeneric = userAgent.includes('X11') || 
+                             userAgent.includes('Linux') || 
+                             userAgent.includes('Windows NT');
+            
+            testResults.basicInfo = isGeneric;
+            document.getElementById('basicInfoResult').textContent = 
+                isGeneric ? 'PASSED (Generic user agent)' : 'FAILED (Unique user agent detected)';
+            document.getElementById('basicInfoResult').className = isGeneric ? 'passed' : 'failed';
+        }
+
+        function testScreenProperties() {
+            const width = window.screen.width;
+            const height = window.screen.height;
+            const colorDepth = window.screen.colorDepth;
+            const pixelRatio = window.devicePixelRatio;
+            
+            document.getElementById('screenSize').textContent = `${width}x${height}`;
+            document.getElementById('colorDepth').textContent = colorDepth;
+            document.getElementById('pixelRatio').textContent = pixelRatio;
+            
+            // Check if values are common or randomized
+            const commonResolutions = [
+                '360x640', '375x667', '390x844', '412x732',
+                '414x896', '428x926', '393x873', '360x780'
+            ];
+            const currentRes = `${width}x${height}`;
+            
+            testResults.screen = commonResolutions.includes(currentRes) && 
+                                (colorDepth === 24 || colorDepth === 32) &&
+                                (pixelRatio >= 1.0 && pixelRatio <= 3.0);
+            
+            document.getElementById('screenResult').textContent = 
+                testResults.screen ? 'PASSED (Common resolution)' : 'FAILED (Unique resolution detected)';
+            document.getElementById('screenResult').className = testResults.screen ? 'passed' : 'failed';
+        }
+
+        function testWebGL() {
+            let webglSupported = false;
+            let webglRenderer = 'Not supported';
+            
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                
+                if (gl) {
+                    webglSupported = true;
+                    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                    if (debugInfo) {
+                        webglRenderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                    }
+                }
+            } catch (e) {
+                webglRenderer = 'Blocked';
+            }
+            
+            document.getElementById('webglSupported').textContent = webglSupported ? 'Yes' : 'No';
+            document.getElementById('webglRenderer').textContent = webglRenderer;
+            
+            testResults.webgl = !webglSupported || webglRenderer === 'Blocked';
+            document.getElementById('webglResult').textContent = 
+                testResults.webgl ? 'PASSED (WebGL blocked or masked)' : 'FAILED (WebGL fingerprint available)';
+            document.getElementById('webglResult').className = testResults.webgl ? 'passed' : 'failed';
+        }
+
+        function testCanvasFingerprinting() {
+            let canvasHash = 'Blocked';
+            let isBlocked = false;
+            
+            try {
+                const canvas = document.getElementById('testCanvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Draw to canvas
+                ctx.fillStyle = 'rgb(128, 128, 128)';
+                ctx.fillRect(0, 0, 200, 50);
+                ctx.fillStyle = 'rgb(255, 0, 0)';
+                ctx.font = '18px Arial';
+                ctx.fillText('Canvas Test', 10, 30);
+                
+                // Try to get data URL
+                const dataUrl = canvas.toDataURL();
+                
+                // Check if canvas is poisoned
+                if (dataUrl.includes('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ')) {
+                    isBlocked = true;
+                    canvasHash = 'Canvas blocked (poisoned)';
+                } else {
+                    // Simple hash of the data URL
+                    let hash = 0;
+                    for (let i = 0; i < dataUrl.length; i++) {
+                        hash = ((hash << 5) - hash) + dataUrl.charCodeAt(i);
+                        hash |= 0;
+                    }
+                    canvasHash = hash.toString(16);
+                }
+            } catch (e) {
+                isBlocked = true;
+                canvasHash = 'Canvas blocked (error)';
+            }
+            
+            document.getElementById('canvasHash').textContent = canvasHash;
+            
+            testResults.canvas = isBlocked;
+            document.getElementById('canvasResult').textContent = 
+                testResults.canvas ? 'PASSED (Canvas blocked or poisoned)' : 'FAILED (Canvas fingerprint available)';
+            document.getElementById('canvasResult').className = testResults.canvas ? 'passed' : 'failed';
+        }
+
+        function testAudioContext() {
+            let audioSupported = false;
+            let audioHash = 'Blocked';
+            
+            try {
+                if (window.AudioContext || window.webkitAudioContext) {
+                    audioSupported = true;
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const analyser = audioContext.createAnalyser();
+                    const scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
+                    
+                    oscillator.type = 'triangle';
+                    oscillator.connect(analyser);
+                    analyser.connect(scriptProcessor);
+                    scriptProcessor.connect(audioContext.destination);
+                    scriptProcessor.onaudioprocess = function(e) {
+                        const data = new Float32Array(analyser.frequencyBinCount);
+                        analyser.getFloatFrequencyData(data);
+                        
+                        // Simple hash of audio data
+                        let hash = 0;
+                        for (let i = 0; i < data.length; i++) {
+                            hash = ((hash << 5) - hash) + data[i];
+                            hash |= 0;
+                        }
+                        audioHash = hash.toString(16);
+                    };
+                    
+                    oscillator.start(0);
+                    setTimeout(() => {
+                        oscillator.stop();
+                        audioContext.close();
+                        document.getElementById('audioHash').textContent = audioHash;
+                    }, 100);
+                }
+            } catch (e) {
+                audioHash = 'Blocked';
+            }
+            
+            document.getElementById('audioSupported').textContent = audioSupported ? 'Yes' : 'No';
+            document.getElementById('audioHash').textContent = audioHash;
+            
+            testResults.audio = !audioSupported || audioHash === 'Blocked';
+            document.getElementById('audioResult').textContent = 
+                testResults.audio ? 'PASSED (AudioContext blocked)' : 'FAILED (Audio fingerprint available)';
+            document.getElementById('audioResult').className = testResults.audio ? 'passed' : 'failed';
+        }
+
+        function testHardwareInfo() {
+            const cpuCores = navigator.hardwareConcurrency || 'Not available';
+            const deviceMemory = navigator.deviceMemory || 'Not available';
+            const maxTouchPoints = navigator.maxTouchPoints || 'Not available';
+            
+            document.getElementById('cpuCores').textContent = cpuCores;
+            document.getElementById('deviceMemory').textContent = deviceMemory;
+            document.getElementById('maxTouchPoints').textContent = maxTouchPoints;
+            
+            // Check if values are common or randomized
+            const commonCores = [2, 4, 6, 8];
+            const commonMemory = [2, 4, 6, 8];
+            const commonTouchPoints = [0, 1, 2];
+            
+            testResults.hardware = 
+                (cpuCores === 'Not available' || commonCores.includes(cpuCores)) &&
+                (deviceMemory === 'Not available' || commonMemory.includes(deviceMemory)) &&
+                (maxTouchPoints === 'Not available' || commonTouchPoints.includes(maxTouchPoints));
+            
+            document.getElementById('hardwareResult').textContent = 
+                testResults.hardware ? 'PASSED (Hardware info masked)' : 'FAILED (Unique hardware info detected)';
+            document.getElementById('hardwareResult').className = testResults.hardware ? 'passed' : 'failed';
+        }
+
+        function testBatteryAPI() {
+            const batteryApiAvailable = 'getBattery' in navigator;
+            document.getElementById('batteryApi').textContent = batteryApiAvailable ? 'Yes' : 'No';
+            
+            testResults.battery = !batteryApiAvailable;
+            document.getElementById('batteryResult').textContent = 
+                testResults.battery ? 'PASSED (Battery API blocked)' : 'FAILED (Battery API available)';
+            document.getElementById('batteryResult').className = testResults.battery ? 'passed' : 'failed';
+        }
+
+        function testSensors() {
+            const orientationAvailable = 'DeviceOrientationEvent' in window;
+            const motionAvailable = 'DeviceMotionEvent' in window;
+            
+            document.getElementById('deviceOrientation').textContent = orientationAvailable ? 'Available' : 'Blocked';
+            document.getElementById('deviceMotion').textContent = motionAvailable ? 'Available' : 'Blocked';
+            
+            testResults.sensors = !orientationAvailable && !motionAvailable;
+            document.getElementById('sensorResult').textContent = 
+                testResults.sensors ? 'PASSED (Sensors blocked)' : 'FAILED (Sensors available)';
+            document.getElementById('sensorResult').className = testResults.sensors ? 'passed' : 'failed';
+        }
+
+        function testStorage() {
+            let cookieTest = 'Working';
+            let localStorageTest = 'Working';
+            let sessionStorageTest = 'Working';
+            let indexedDbTest = 'Working';
+            
+            try {
+                document.cookie = 'testCookie=value; path=/';
+                if (!document.cookie.includes('testCookie')) {
+                    cookieTest = 'Blocked';
+                }
+                document.cookie = 'testCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+            } catch (e) {
+                cookieTest = 'Blocked';
+            }
+            
+            try {
+                localStorage.setItem('test', 'value');
+                if (localStorage.getItem('test') !== 'value') {
+                    localStorageTest = 'Blocked';
+                }
+                localStorage.removeItem('test');
+            } catch (e) {
+                localStorageTest = 'Blocked';
+            }
+            
+            try {
+                sessionStorage.setItem('test', 'value');
+                if (sessionStorage.getItem('test') !== 'value') {
+                    sessionStorageTest = 'Blocked';
+                }
+                sessionStorage.removeItem('test');
+            } catch (e) {
+                sessionStorageTest = 'Blocked';
+            }
+            
+            try {
+                if (!window.indexedDB) {
+                    indexedDbTest = 'Blocked';
+                }
+            } catch (e) {
+                indexedDbTest = 'Blocked';
+            }
+            
+            document.getElementById('cookieTest').textContent = cookieTest;
+            document.getElementById('localStorageTest').textContent = localStorageTest;
+            document.getElementById('sessionStorageTest').textContent = sessionStorageTest;
+            document.getElementById('indexedDbTest').textContent = indexedDbTest;
+            
+            testResults.storage = cookieTest === 'Blocked' && 
+                                localStorageTest === 'Blocked' && 
+                                sessionStorageTest === 'Blocked' && 
+                                indexedDbTest === 'Blocked';
+            
+            document.getElementById('storageResult').textContent = 
+                testResults.storage ? 'PASSED (All storage blocked)' : 'FAILED (Some storage available)';
+            document.getElementById('storageResult').className = testResults.storage ? 'passed' : 'failed';
+        }
+
+        function testWebRTC() {
+            let webrtcIp = 'Blocked';
+            
+            try {
+                const rtcConfig = {
+                    iceServers: [{urls: 'stun:stun.l.google.com:19302'}]
+                };
+                const pc = new RTCPeerConnection(rtcConfig);
+                
+                pc.createDataChannel('test');
+                pc.createOffer()
+                    .then(offer => pc.setLocalDescription(offer))
+                    .then(() => {
+                        const lines = pc.localDescription.sdp.split('\n');
+                        const ipLines = lines.filter(line => line.includes('candidate'));
+                        if (ipLines.length > 0) {
+                            webrtcIp = 'IP leaked: ' + ipLines[0].split(' ')[4];
+                        } else {
+                            webrtcIp = 'No IP leaked';
+                        }
+                        document.getElementById('webrtcIp').textContent = webrtcIp;
+                        
+                        testResults.webrtc = webrtcIp === 'Blocked' || webrtcIp === 'No IP leaked';
+                        document.getElementById('webrtcResult').textContent = 
+                            testResults.webrtc ? 'PASSED (WebRTC blocked or no IP leak)' : 'FAILED (WebRTC IP leak detected)';
+                        document.getElementById('webrtcResult').className = testResults.webrtc ? 'passed' : 'failed';
+                        
+                        updateFinalResults();
+                    })
+                    .catch(() => {
+                        webrtcIp = 'Blocked';
+                        document.getElementById('webrtcIp').textContent = webrtcIp;
+                        
+                        testResults.webrtc = true;
+                        document.getElementById('webrtcResult').textContent = 'PASSED (WebRTC blocked)';
+                        document.getElementById('webrtcResult').className = 'passed';
+                        
+                        updateFinalResults();
+                    });
+            } catch (e) {
+                webrtcIp = 'Blocked';
+                document.getElementById('webrtcIp').textContent = webrtcIp;
+                
+                testResults.webrtc = true;
+                document.getElementById('webrtcResult').textContent = 'PASSED (WebRTC blocked)';
+                document.getElementById('webrtcResult').className = 'passed';
+                
+                updateFinalResults();
+            }
+            
+            // Initial display while waiting for async result
+            document.getElementById('webrtcIp').textContent = 'Testing...';
+            document.getElementById('webrtcResult').textContent = 'Checking...';
+        }
+
+        function testFonts() {
+            let fontList = 'Blocked';
+            
+            try {
+                if (document.fonts && document.fonts.ready) {
+                    fontList = 'Available';
+                } else {
+                    fontList = 'Blocked';
+                }
+            } catch (e) {
+                fontList = 'Blocked';
+            }
+            
+            document.getElementById('fontList').textContent = fontList;
+            
+            testResults.fonts = fontList === 'Blocked';
+            document.getElementById('fontResult').textContent = 
+                testResults.fonts ? 'PASSED (Font enumeration blocked)' : 'FAILED (Font enumeration available)';
+            document.getElementById('fontResult').className = testResults.fonts ? 'passed' : 'failed';
+        }
+
+        function testPlugins() {
+            let pluginList = 'Blocked';
+            
+            try {
+                if (navigator.plugins && navigator.plugins.length > 0) {
+                    pluginList = Array.from(navigator.plugins).map(p => p.name).join(', ');
+                } else {
+                    pluginList = 'Blocked';
+                }
+            } catch (e) {
+                pluginList = 'Blocked';
+            }
+            
+            document.getElementById('pluginList').textContent = pluginList;
+            
+            testResults.plugins = pluginList === 'Blocked';
+            document.getElementById('pluginResult').textContent = 
+                testResults.plugins ? 'PASSED (Plugin detection blocked)' : 'FAILED (Plugins detected)';
+            document.getElementById('pluginResult').className = testResults.plugins ? 'passed' : 'failed';
+        }
+
+        function testTimezone() {
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown';
+            document.getElementById('timezone').textContent = timezone;
+            
+            // Check if timezone is UTC (common for privacy browsers)
+            testResults.timezone = timezone === 'UTC' || timezone === 'Unknown';
+            document.getElementById('timezoneResult').textContent = 
+                testResults.timezone ? 'PASSED (Timezone masked)' : 'FAILED (Real timezone exposed)';
+            document.getElementById('timezoneResult').className = testResults.timezone ? 'passed' : 'failed';
+        }
+
+        function updateFinalResults() {
+            const passedCount = Object.values(testResults).filter(v => v).length;
+            const privacyScore = Math.round((passedCount / 13) * 100);
+            
+            document.getElementById('passedCount').textContent = passedCount;
+            document.getElementById('privacyScore').textContent = privacyScore;
+        }
+
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runAllTests);
+        
+        // Button to run tests again
+        document.getElementById('runTests').addEventListener('click', runAllTests);
+    </script>
+</body>
+</html>
