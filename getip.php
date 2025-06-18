@@ -8995,7 +8995,7 @@ $torIP = "1.161.155.81
 
 
 
-$ips = explode("\n", $torIP);
+
 
 
 
@@ -9018,15 +9018,23 @@ $timezone = $record->location->timeZone;
 $country = $record->country->name;
 		
 
+$ips = explode("\n", $torIP);
 
-if(in_array("98.213.187.139", $ips)) {
-
-$arr = array(
-	"country" => $country,
-	"ip" => $ip,
-	"timezone" => $timezone,
-	"tor" => true
+if(in_array($ip, $ips)) {
+	$arr = array(
+		"country" => $country,
+		"ip" => $ip,
+		"timezone" => $timezone,
+		"isTor" => 1
      );
+}
+else {
+	$arr = array(
+		"country" => $country,
+		"ip" => $ip,
+		"timezone" => $timezone,
+		"isTor" => 0
+	);
 }
 
 
