@@ -20,7 +20,7 @@ $record = $reader->city($ip);
 $timezone = $record->location->timeZone;
 $country = $record->country->name;
 		
-$ arr = array(
+$arr = array(
 	"country" => $country,
 	"ip" => $ip,
 	"timezone" => $timezone
