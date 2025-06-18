@@ -9019,7 +9019,7 @@ $country = $record->country->name;
 		
 
 
-if(in_array("98.213.187.139", $torIP)) {
+if(in_array("98.213.187.139", $ips)) {
 
 $arr = array(
 	"country" => $country,
