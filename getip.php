@@ -1,4 +1,7 @@
 <?php
+require 'vendor/autoload.php';
+use GeoIp2\Database\Reader
+
 function getClientIp() {
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
@@ -8,4 +11,13 @@ function getClientIp() {
     return $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 }
 
-echo getClientIp();
+$ip = getClientIp();
+
+$reader = new Reader('GeoLite2-City.mmdb');
+$record = $reader->city($ip);
+		
+// Extract data
+$timezone = $record->location->timeZone;
+$country = $record->country->name;
+		
+echo $country;		
