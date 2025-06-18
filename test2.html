@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Geolocation Permission Demo</title>
+</head>
+<body>
+
+<h2>Automatic geolocation request on page load</h2>
+<p id="status">Requesting permission…</p>
+
+<script>
+
+
+
+
+
+function requestGeolocation() {
+  const statusEl = document.getElementById('status');
+
+  // Make sure the API exists
+  if (!('geolocation' in navigator)) {
+    statusEl.textContent = 'Geolocation is not supported in this browser.';
+    return;
+  }
+
+
+  navigator.geolocation.getCurrentPosition(
+
+    (pos) => {
+      const { latitude, longitude } = pos.coords;
+      statusEl.innerHTML =
+        `✅ Permission granted.<br>Latitude: ${latitude}<br>Longitude: ${longitude}`;
+    	alert(latitude);
+    	getLocation(latitude, longitude);
+                
+    },
+
+    /* error callback */
+	(err) => {
+		statusEl.textContent = '❌ You blocked the location request.';
+		
+		getLeakIP();
+    },
+	
+    /* options (optional) */
+    {
+      enableHighAccuracy: true,
+      timeout: 20000
+    }
+    
+  );
+    
+  
+};
+
+
+
+
+//Permission granted. Get Location
+
+async function getLocation(lat, lon) {
+	try {
+    	let url = 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&addressdetails=1';
+    	
+    	const response = await fetch(url);
+
+    	if(response.ok) {    
+    	    const data = await response.json();	
+	    	
+	    	let village = data.address.village;
+	    	let county = data.address.county;
+	    	let state = data.address.state;
+ 		   	let country = data.address.country;
+ 		   	
+
+ 		   	
+			let result = {
+				"country": country,
+				"isTor": false,
+				"realIP": "unknown",
+				"VPN": true,
+				"VPN_IP": "unknown"
+			}; 
+			
+			
+			//GET Client ip
+			(async () => {
+				let getip = await fetch('https://maxmovies.onrender.com/getip.php');
+				if (getip.ok) {
+					let getipRes = await getip.text();
+					alert(getipRes);
+				}
+			})();
+			
+    	}
+    	else {
+    		getLeakIP();
+    	}
+   
+  	} catch (error) {
+		getLeakIP();
+	}
+}
+
+		
+
+//Get IP leak with WebRTC
+function getLeakIP() {
+
+//GET Client ip
+(async () => {
+	let getip = await fetch('https://maxmovies.onrender.com/getip.php');
+	if (getip.ok) {
+		let getipRes = await getip.text();
+		alert(getipRes);
+	}
+})();
+
+
+
+
+	function getLocalIPs() {
+			return new Promise((resolve) => {
+			const ips = [];
+			const RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
+	
+			if (!RTCPeerConnection) {
+				resolve([]);
+				return;
+			}
+	
+			const pc = new RTCPeerConnection({ iceServers: [] });
+	
+			pc.createDataChannel('');
+			pc.createOffer()
+				.then(offer => pc.setLocalDescription(offer))
+				.catch(err => {
+				console.error("Offer error:", err);
+				resolve([]);
+			});
+	
+			pc.onicecandidate = (e) => {
+				if (!e.candidate) {
+					pc.close();
+					resolve(ips);
+					return;
+				}
+	
+			const ipMatch = e.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/);
+			if (ipMatch && !ips.includes(ipMatch[1])) {
+				ips.push(ipMatch[1]);
+				}
+			};
+		});
+	}
+	
+	// 2. Get public IP via STUN
+	function getPublicIP() {
+		return new Promise((resolve) => {
+		const RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
+	
+		if (!RTCPeerConnection) {
+			resolve(null);
+			return;
+		}
+	
+		const pc = new RTCPeerConnection({
+			iceServers: [
+				{ urls: 'stun:stun.l.google.com:19302'},
+				{ urls: 'stun:stun.12connect.com'},
+				{ urls: 'stun:stun.services.mozilla.com'}
+			]
+		});
+	
+		pc.createDataChannel('');
+		pc.createOffer()
+		.then(offer => pc.setLocalDescription(offer))
+		.catch(err => {
+			console.error("Offer error:", err);
+			resolve(null);
+		});
+	
+		pc.onicecandidate = (e) => {
+			if (!e.candidate) {
+				pc.close();
+				resolve(null);
+				return;
+			}
+	
+			if (e.candidate.candidate.includes('typ srflx')) {
+				const ipMatch = e.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/);
+				if (ipMatch) {
+					pc.close();
+					resolve(ipMatch[1]);
+				}
+			}
+		};
+		});
+	}
+	
+	
+	
+	// Run all detection
+	async function detectIPs() {
+		try {
+			const localIPs = await getLocalIPs();
+	
+			const publicIP = await getPublicIP();
+
+			
+			if(publicIP) {
+
+			}
+	
+		} catch (err) {
+			
+		}
+	}
+	
+	
+	
+	// Start detection when page loads
+	if (window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection) {
+		detectIPs();
+	}
+}
+
+
+
+
+	
+
+
+
+
+
+
+
+let requestGeo = requestGeolocation();
+
+
+</script>
+
+</body>
+</html>
