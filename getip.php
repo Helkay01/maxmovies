@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-use GeoIp2\Database\Reader
+use GeoIp2\Database\Reader;
 
 function getClientIp() {
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
