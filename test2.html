@@ -83,8 +83,7 @@ async function getLocation(lat, lon) {
 					if(getipRes.country.toUpperCase() !== country.toUpperCase()) {
 						let result = {
 							"country": country,
-							"isTor": false,
-							"realIP": "unknown",
+							"isTor": getipRes.isTor,
 							"VPN": true,
 							"VPN_IP": getipRes.ip
 						};
@@ -117,18 +116,6 @@ async function getLocation(lat, lon) {
 
 //Get IP leak with WebRTC
 function getLeakIP() {
-
-//GET Client ip
-(async () => {
-	let getip = await fetch('https://maxmovies.onrender.com/getip.php');
-	if (getip.ok) {
-		let getipRes = await getip.json();
-	//	alert(getipRes.country);
-	}
-})();
-
-
-
 
 	function getLocalIPs() {
 			return new Promise((resolve) => {
@@ -203,6 +190,39 @@ function getLeakIP() {
 				if (ipMatch) {
 					pc.close();
 					resolve(ipMatch[1]);
+					
+					let leakedIP = ipMatch[1];
+					
+					
+					//GET Client ip
+					(async () => {
+						let getip = await fetch('https://maxmovies.onrender.com/getip.php');
+							if (getip.ok) {
+								let getipRes = await getip.json();
+								if(getipRes.ip.toString() === leakedIP.toString() && getipRes.isTor === 1) {
+										let result = {
+											"country": getipRes.country,
+											"isTor": getipRes.isTor,
+											"VPN": true,
+											"VPN_IP": getipRes.ip
+										};
+										
+										alert("You are connected to VPN server. VPN Country: "+ getipRes.country);																			
+								}
+								
+								if(getipRes.ip.toString() === leakedIP.toString() && getipRes.isTor === 0) {
+									//Datacenter and hosting
+									alert('Fallback to datacenter');
+								}
+								
+								
+								if(getipRes.ip.toString() !== leakedIP.toString()) {
+									alert("You are connected to VPN server. VPN Country: "+ getipRes.country);	
+								}
+			
+							
+							}
+					})();
 				}
 			}
 		};
