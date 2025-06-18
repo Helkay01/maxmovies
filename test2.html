@@ -88,8 +88,8 @@ async function getLocation(lat, lon) {
 			(async () => {
 				let getip = await fetch('https://maxmovies.onrender.com/getip.php');
 				if (getip.ok) {
-					let getipRes = await getip.text();
-					alert(getipRes);
+					let getipRes = await getip.json();
+					alert(getipRes.country);
 				}
 			})();
 			
@@ -103,6 +103,11 @@ async function getLocation(lat, lon) {
 	}
 }
 
+		
+		
+
+		
+		
 		
 
 //Get IP leak with WebRTC
