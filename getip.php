@@ -20,4 +20,12 @@ $record = $reader->city($ip);
 $timezone = $record->location->timeZone;
 $country = $record->country->name;
 		
-echo $country;		
+$ arr = array(
+	"country" => $country,
+	"ip" => $ip,
+	"timezone" => $timezone
+     );
+
+
+header('Content-Type: application/json');
+echo json_encode($arr, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
