@@ -9028,7 +9028,7 @@ $arr = array(
 	"tor" => true
      );
 }
-}
+
 
 $reader->close();
 
