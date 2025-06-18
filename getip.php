@@ -1,3 +1,4 @@
+<?php
 function getClientIP() {
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         return $_SERVER['HTTP_X_FORWARDED_FOR'];
