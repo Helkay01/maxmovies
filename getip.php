@@ -8,4 +8,4 @@ function getClientIp() {
     return $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 }
 
-echo "Client IP: " . getClientIp();
+echo getClientIp();
