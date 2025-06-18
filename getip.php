@@ -1,11 +1,11 @@
 <?php
-function getClientIP() {
-    if (isset($_SERVER['REMOTE_ADDR'])) {
-        return $_SERVER['REMOTE_ADDR'];
-    } elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
-        return $_SERVER['HTTP_X_REAL_IP'];
+function getClientIp() {
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        return trim($ips[0]); // First IP is the real client IP
     }
+
+    return $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 }
 
-$clientIP = getClientIP();
-echo "User's IP: " . $clientIP;
+echo "Client IP: " . getClientIp();
