@@ -26,6 +26,7 @@ $ arr = array(
 	"timezone" => $timezone
      );
 
+$reader->close();
 
 header('Content-Type: application/json');
 echo json_encode($arr, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
