@@ -15,8 +15,3 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-# Security headers
-<IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
-</IfModule>
