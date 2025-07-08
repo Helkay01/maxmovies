@@ -3,7 +3,9 @@ include "header.php";
 ?>
 
 <!-- ✅ JavaScript -->
-  <script>
+<script>
+window.onload = function() {
+  
     const movies = [
       {
         title: "Dune",
@@ -53,7 +55,9 @@ include "header.php";
         }
       }
     });
-  </script>
+
+}  
+</script>
 
 
 
