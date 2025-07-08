@@ -59,7 +59,9 @@ window.onload = function() {
 }  
 </script>
 
-
+<?php
+include "head.php";
+?>
 
 <!-- ✅ Hero Section -->
   <section class="relative min-h-screen bg-cover bg-center pt-16" style="background-image: url('https://image.tmdb.org/t/p/original/qJxzjUjCpTPvDHldNnlbRC4OqEh.jpg');">
