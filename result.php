@@ -59,6 +59,9 @@
 
   <div hidden id="t"><?php echo isset($_GET['q']) ? htmlspecialchars($_GET['q']) : ''; ?></div>
 
+<br>
+<br>
+
   <section class="p-4 md:p-8 max-w-7xl mx-auto">
     <div id="movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
       <!-- Skeleton loader shows initially, replaced by AJAX content -->
