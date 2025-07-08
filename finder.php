@@ -1,108 +1,85 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
 
-use Curl\Curl;
-
-
-$title = $_GET['t'];
+include "vendor/autoload.php";
 
 
 
-
-$no_space = str_replace(" ", "", $title);
-
-$title_array = explode(" ", $title);
+$url = "https://nkiri.com/category/international/";
 
 
 
+// Initialize cURL session
+$ch = curl_init();
+
+// Set cURL options
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+
+// Execute the cURL request
+$response = curl_exec($ch);
 
 
+$html = $response;
 
 
+$dom = new DOMDocument();
+@$dom->loadHTML($html);
 
-//Curl Start
+$articles = $dom->getElementsByTagName("article");
 
-$url = 'https://fzmovies.net/csearch.php';
-
-// Form data to be submitted
-$formData = array(
-    'searchname' => $title,
-);
-
-$curl = new Curl();
-
-//$cookieFile = 'c/'.$_COOKIE['id'].'/cookies.txt';
-$cookieFile = "c.txt";
-
-// Enable cookie handling
-$curl->setOpt(CURLOPT_COOKIEJAR, $cookieFile); // Save cookies to a file
-$curl->setOpt(CURLOPT_COOKIEFILE, $cookieFile); // Load cookies from the file
-
-
-$curl->setOpt(CURLOPT_SSL_VERIFYPEER, false);
-$curl->setUserAgent($_SERVER['HTTP_USER_AGENT']);
-
-
-$curl->disableTimeout();
+foreach($articles as $article) {
+	$img = $article->getElementsByTagName("img")->item(0)->getAttribute("src");
+	$header = $article->getElementsByTagName("header")->item(0);
+	$link = $header->getElementsByTagName("a")->item(0)->getAttribute("href");
 	
-$curl->get($url, $formData);
+	$string = $header->getElementsByTagName("a")->item(0)->nodeValue;
 
 
-if($curl->getHttpStatusCode() === 200) {
-
-	$curl->close();
-
-	$html = $curl->response;
-
-	$dom = new DOMDocument();
-	@$dom->loadHTML($html);
-
-	$xpath = new DOMXPath($dom);
-
-	// Define the class name you want to select
-	$className = 'mainbox';
-
-	// Use XPath query to select elements by class name
-	$elements = $xpath->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' $className ')]");
-
-	for($e = 0; $e < count($elements); $e++) {
-		$one =  $elements->item($e);
-		$lk = $one->getElementsByTagName("a")->item(0);
-		$sm = $one->getElementsByTagName("small")->item(1);
+	$pattern = '/\((\d+)\)/'; // Regular expression pattern to match digits inside parentheses
+	
+	if(preg_match($pattern, $string, $matches)) {
+		$figuresInsideParentheses = $matches[1]; // Extract the figures inside parentheses
+		$year = $figuresInsideParentheses;
 		
-		$imgPath = $one->getElementsByTagName("img")->item(0);
-		$img = "https://fzmovies.net/".$imgPath->getAttribute("src");
-		$mTitle = $one->getElementsByTagName("small")->item(0)->nodeValue;
+		$t1 = str_replace("(", "", $string);
+		$t2 = str_replace(")", "", $t1);
+		$t3 = str_replace("Download", "", $t2);
 		
-		$fzlink = $lk->getAttribute('href');
-		$yr = $sm->nodeValue;
-		$yr1 = str_replace("(", "", $yr);
-		$yr2 = str_replace(")", "", $yr1);
+		$title = str_replace($year, "", $t3);
 
 		
-		$output[] = '			
-			<a href="/watch.php?t='.$mTitle.'&y='.$yr2.'&poster='.$img.'">
-				<img src="'.$img.'" alt="" class="w-full h-60 object-cover">
-				<div class="p-4">
-					<h3 class="text-lg font-semibold">'.$mTitle.' '.$yr2.'</h3>
-				</div>
-			</a>';
+		
+		$pos = strpos($title, '|');
+		
+		if ($pos !== false) {
+			$result = trim(substr($title, 0, $pos));
+		}
+	
+	}
+
+		$output[] = '
+			<li style="" class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$year.'"><a href="https://imd.com.ng/movies.php?t='.$result.'&y='.$year.'&img='.$img.'">
+				<img src="'.$img.'">
 			
-			
-
+			<div>
+				<small><div id="cap">'.$result.' ('.$year.')</div></small>
+			</div>
+			</a></li>';
+		
 		$arr = array($output);
 	}
+
+
+
+
 
 
 
 shuffle($arr[0]);
 
 foreach($arr[0] as $sh) {
+	
 	echo $sh;
-}
-
-
-
-
-
 }
