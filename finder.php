@@ -60,14 +60,18 @@ foreach($articles as $article) {
 	}
 
 		$output[] = '
-			<li style="" class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$year.'"><a href="https://imd.com.ng/movies.php?t='.$result.'&y='.$year.'&img='.$img.'">
-				<img src="'.$img.'">
-			
-			<div>
-				<small><div id="cap">'.$result.' ('.$year.')</div></small>
-			</div>
-			</a></li>';
-		
+				<div class="rounded-xl overflow-hidden bg-slate-800 shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out">
+				        <a href="/watch.php?t='.$result.'&y='.$year.'&img='.$img.'">
+          					<img src="'.$img.'" class="w-full h-72 object-cover">
+          					<div class="p-4">
+				            		<h3 class="text-lg font-semibold">'.$result.'</h3>
+            						<p class="text-sm text-slate-400">'.$year.'</p>
+          					</div>
+        				</a>
+				</div>
+   			';
+
+
 		$arr = array($output);
 	}
 
