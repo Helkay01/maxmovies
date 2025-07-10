@@ -12,6 +12,8 @@ $poster = $_GET['poster'] ?? '';
   <title>Watch <?php echo htmlspecialchars($title); ?> | Movie Finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="vplayer.min.js"></script>
+
   <style>
     .backdrop {
       background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), #0f172a), url('<?php echo $poster; ?>');
