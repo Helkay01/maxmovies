@@ -5,6 +5,31 @@ include "header.php";
 <!-- ✅ JavaScript -->
 <script>
 window.onload = function() {
+
+      var title = $("#t").text().trim();
+
+      // Render skeleton loader grid (8 items)
+      const skeletonHTML = Array(8).fill(`
+        <div class="skeleton w-full h-64"></div>
+      `).join("");
+      $("#new-movieGrid").html(skeletonHTML);
+
+      $.ajax({
+        url: '/finder.php',
+        data: {t: title},
+        success: function(data) {
+          $("#new-movieGrid").html(data);
+        },
+        error: function() {
+          $("#new-movieGrid").html('<p class="text-center text-red-400 col-span-full">Failed to load movies. Please try again.</p>');
+        }
+      });
+
+
+
+
+
+
   
     const movies = [
       {
