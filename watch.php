@@ -1,211 +1,107 @@
 <?php
+include "header.php";
 
-
-    
+$title = $_GET['t'] ?? 'Unknown Title';
+$year = $_GET['y'] ?? '0000';
+$poster = $_GET['poster'] ?? '';
 ?>
 
 
 
+  <meta charset="UTF-8" />
+  <title>Watch <?php echo htmlspecialchars($title); ?> | Movie Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .backdrop {
+      background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), #0f172a), url('<?php echo $poster; ?>');
+      background-size: cover;
+      background-position: center;
+    }
+    .video-container video {
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+  </style>
 
-<title>Watch <?php echo $_GET['t']; ?></title>
 
-<script src="vplayer.min.js"></script>
-
-
-
+<?php
+include "header.php";
+?>
 
 
+  <!-- 🔻 HERO AREA -->
+  <div class="backdrop min-h-screen w-full relative">
+    <div class="absolute inset-0 bg-black/70"></div>
 
+    <div class="relative z-10 max-w-6xl mx-auto px-4 py-24 flex flex-col md:flex-row items-center gap-10">
+      <div class="w-full md:w-2/3">
+        <div class="video-container">
+          <video 
+            src="" 
+            preload="metadata" 
+            data-title="<?php echo strtoupper(htmlspecialchars($title)); ?>"
+            controls
+            class="w-full h-auto max-h-[70vh]"
+          ></video>
+        </div>
+      </div>
+      <div class="w-full md:w-1/3 text-center md:text-left">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2"><?php echo htmlspecialchars($title); ?></h1>
+        <p class="text-slate-300 mb-4 text-lg">Year: <?php echo htmlspecialchars($year); ?></p>
+        <p class="text-slate-400 text-sm italic">Enjoy streaming in HD. Suggestions and more below!</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- 🔻 SUGGESTIONS -->
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-bold mb-6">🎬 You May Also Like</h2>
+    <div id="suggestions" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <!-- AJAX suggestions injected here -->
+    </div>
+  </section>
 
+  <footer class="text-center text-slate-500 text-sm py-6 border-t border-slate-700">
+    &copy; <?php echo date("Y"); ?> Movie Finder. All rights reserved.
+  </footer>
 
+  <!-- jQuery & AJAX -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      const title = "<?php echo addslashes($title); ?>";
+      const year = "<?php echo addslashes($year); ?>";
 
+      $.ajax({
+        url: '/fz.php',
+        data: { t: title, y: year },
+        success: function (response) {
+          try {
+            const movies = JSON.parse(response);
+            let output = "";
 
-<script>
-/*
+            movies.forEach(m => {
+              output += `
+                <div class="bg-slate-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:scale-105 transition duration-300">
+                  <a href="/watch.php?t=${encodeURIComponent(m.title)}&y=${m.year}&poster=${encodeURIComponent(m.poster)}">
+                    <img src="${m.poster}" alt="${m.title}" class="w-full h-60 object-cover" />
+                    <div class="p-3">
+                      <h3 class="font-semibold text-lg">${m.title}</h3>
+                      <p class="text-slate-400 text-sm">${m.year}</p>
+                    </div>
+                  </a>
+                </div>
+              `;
+            });
 
-async function loadVASTAd(vastUrl) {
-    const response = await fetch(vastUrl);
-    const xml = await response.text();
-    return xml;
-}
-
-function parseVAST(xml) {
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(xml, "text/xml");
-    const ad = xmlDoc.getElementsByTagName("MediaFile")[0];
-    return ad ? ad.textContent : null;
-}
-
-async function playAd() {
-    const vastUrl = 'https://knownamount.com/dmmDFWzXd.GTNzvUZEG-UE/pesm/9/ujZFUJl-kfPuTgU/2jOiDBcm1TM/TAYHtmNhT/Yd4-N/zGUbxFNby/ZNsGaMWI1HptdBDd0Gxe'; // Replace with your VAST URL
-    const vastXML = await loadVASTAd(vastUrl);
-    const adUrl = parseVAST(vastXML);
-    
-    if (adUrl) {
-        const videoElement = document.querySelector('video');
-        videoElement.src = adUrl; // Set the ad video source
-        videoElement.play(); // Play the ad
-		
-		videoElement.onplaying = function() {		
-			$("small#title").html("Please wait, Video will play after the ad.");
-			$("small#title").css("color", "lightblue");
-			
-			$(".vp-progress div").show();
-		}			
-		 			
-        videoElement.onended = function() {
-		
-			var title = videoElement.dataset.title;
-			
-			$("small#title").html(title);
-			
-			$(".vp-progress div").hide();
-			        
-			videoElement.src = videoElement.dataset.video; // Your main video source
-			videoElement.play();
-			
-			videoElement.onplaying = function() {
-				$(".vp-progress div").show();
-			}
-			
+            $("#suggestions").html(output);
+          } catch (e) {
+            $("#suggestions").html('<p class="text-slate-400">No suggestions available.</p>');
+          }
         }
-    } else {
-        console.error("No ad found in the VAST response.");
-        // Fallback to main video if no ad is found
-        const videoElement = document.querySelector('video');
-        videoElement.src = videoElement.dataset.video; // Your main video source
-        videoElement.play();
-        
-       	$(".vp-progress div").show();
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    playAd();
-});
-
-*/
-
-
-
-
-
-
-
-$("document").ready(function() {
-    var vidm = document.querySelector("video");
-    
-    vidm.onplaying = function() {
-        $(".vp-progress div").show();
-    }
-    
-    
-    $('span#fs').hide();
-    
-    
-    var title = $("#mdeets").data("title");
-    var year = $("#mdeets").data("year");
-
-    //Get movies
-    $.ajax({
-    	url: '/fz.php',
-    	data: {t: title, y: year},
-    	success: function(data) {
-    		alert(data);
-    	}
+      });
     });
-    
-    
-     
-});
-    
-    
-</script>
-
-
-
-
-<style>
-div#vplayer {
-	box-shadow: 0 0 2px 0;
-	margin-top: -3px;
-}
-
-.vp-progress div {
-    display: none;
-}
-
-
-</style>
-
-
-
-
-
-
-
-	
-	<video style="" 
-		src=""
-		preload="metadata"
-		data-video=""
-		height="300px"
-		width="100%"
-		data-title="<?php echo strtoupper($_GET['t']); ?>"
-	>
-	</video>
-
-
-<br>
-<br>
-
-
-
-<div hidden data-year="<?php echo $_GET['y']; ?>"
-data-title="<?php echo $_GET['t']; ?>"
- id="mdeets"></div>
-
-
-
-
-
-<!--
-<div style="margin-top: 20px" id="similar">
-	
-	<div style="font-weight: bold; color: grey; font-size: 14px; margin-left: 6px;">
-		<label>You May Also Like</label>
-		
-		<div class="m-div" style="overflow: scrol;" id="trending-result">
-		
-		</div>
-	</div>
-	
-	
-	<div style="font-weight: bold; color: grey; font-size: 14px; margin-left: 6px;">
-		<label>New Movies</label>
-
-		<br>
-		
-		<div class="m-div" style="overflow: scrol;" id="search-result">
-		
-		</div>
-	</div>
-	
-
-	<br>
-	<br>
-	
-
-	
-</div>
-
--->
-
-
-
-
-
-
-
-
+  </script>
+</body>
+</html>
