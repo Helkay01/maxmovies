@@ -12,7 +12,7 @@ $year = $_GET['y'];
 
 
 
-$no_space = str_replace(["'", ":"], "", $title);
+$no_space = str_replace(["!", "*", ":"], "", $title);
 
 $title_array = explode(" ", $no_space);
 
