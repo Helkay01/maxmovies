@@ -1,5 +1,5 @@
 <?php
-require "/home/geoqzeck/vendor/autoload.php";
+require "vendor/autoload.php";
 
 use Curl\Curl;
 
