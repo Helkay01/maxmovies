@@ -137,16 +137,14 @@ include "head.php";
   </section>
 
 <!-- ✅ New Movies Section -->
-  <section class="p-6 md:p-12 bg-slate-900">
+ <section class="p-4 md:p-8 max-w-7xl mx-auto">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-8 text-center border-b border-slate-600 pb-4">🔥 New Movies</h2>
-      <div id="new-movieGrid" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <!-- Movie cards will be injected here -->
-      </div>
+        <h2 class="text-3xl font-bold mb-8 text-center border-b border-slate-600 pb-4">🔥 New Movies</h2>
+        <div id="new-movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              <!-- Skeleton loader shows initially, replaced by AJAX content -->
+        </div>
     </div>
   </section>
-
-
 
 
 <?php
