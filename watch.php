@@ -26,7 +26,7 @@ $poster = $_GET['poster'] ?? '';
 
 
 <?php
-include "header.php";
+include "head.php";
 ?>
 
 
@@ -38,7 +38,7 @@ include "header.php";
       <div class="w-full md:w-2/3">
         <div class="video-container">
           <video 
-            src="" 
+            src="<?php echo strtoupper(htmlspecialchars($_GET['l'])); ?>" 
             preload="metadata" 
             data-title="<?php echo strtoupper(htmlspecialchars($title)); ?>"
             controls
@@ -46,7 +46,7 @@ include "header.php";
           ></video>
         </div>
       </div>
-      <div class="w-full md:w-1/3 text-center md:text-left">
+      <div style+"color: white" class="w-full md:w-1/3 text-center md:text-left">
         <h1 class="text-3xl md:text-4xl font-bold mb-2"><?php echo htmlspecialchars($title); ?></h1>
         <p class="text-slate-300 mb-4 text-lg">Year: <?php echo htmlspecialchars($year); ?></p>
         <p class="text-slate-400 text-sm italic">Enjoy streaming in HD. Suggestions and more below!</p>
@@ -54,17 +54,17 @@ include "header.php";
     </div>
   </div>
 
+
+
   <!-- 🔻 SUGGESTIONS -->
-  <section class="max-w-6xl mx-auto px-4 py-12">
+  <section style+"color: white" class="max-w-6xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold mb-6">🎬 You May Also Like</h2>
-    <div id="suggestions" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+    <div id="new-movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
       <!-- AJAX suggestions injected here -->
     </div>
   </section>
 
-  <footer class="text-center text-slate-500 text-sm py-6 border-t border-slate-700">
-    &copy; <?php echo date("Y"); ?> Movie Finder. All rights reserved.
-  </footer>
+  
 
   <!-- jQuery & AJAX -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -105,3 +105,7 @@ include "header.php";
   </script>
 </body>
 </html>
+
+<?php
+include "footer.php";
+?>
