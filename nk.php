@@ -11,13 +11,11 @@ $title = $_GET['t'];
 $year = $_GET['y'];
 
 
-$no_space = str_replace(" ","", $title);
+$no_space = str_replace(" ", "", $title);
+$no_dot = str_replace(":", "", $no_space);
+$no_other = str_replace("'", "", $no_dot);
 
-$title_array = explode(" ", $title);
-
-
-
-
+$title_array = explode(" ", $no_other);
 
 
 
