@@ -47,7 +47,9 @@ $poster = $_GET['poster'] ?? '';
 
 <!-- ✅ JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-window.onload = function() {
+
+<script>
+  window.onload = function() {
 
       //var title = $("#t").text().trim();
 
@@ -68,7 +70,7 @@ window.onload = function() {
       });
 
 }
-
+</script>
 
 <?php
 include "head.php";
@@ -102,10 +104,12 @@ include "head.php";
 
 
   <!-- 🔻 SUGGESTIONS -->
-  <section style+"color: white" class="max-w-6xl mx-auto px-4 py-12">
-    <h2 class="text-2xl font-bold mb-6">🎬 You May Also Like</h2>
-    <div id="new-movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-      <!-- AJAX suggestions injected here -->
+  <section class="p-4 md:p-8 max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center border-b border-slate-600 pb-4">🎬 You May Also Like</h2>
+        <div id="new-movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              <!-- Skeleton loader shows initially, replaced by AJAX content -->
+        </div>
     </div>
   </section>
 
