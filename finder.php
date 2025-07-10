@@ -14,8 +14,9 @@ $title = $_GET['t'];
 
 
 $no_space = str_replace(" ", "", $title);
+$no_dot = str_replace(":", "", $no_space);
 
-$title_array = explode(" ", $title);
+$title_array = explode(" ", $no_dot);
 
 
 $url = "https://nkiri.com/";
