@@ -7,8 +7,8 @@ include "header.php";
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
 $("document").ready(function() {
-   let title = document.getElementById('t');
-   let year = document.getElementById('y');
+   let title = document.getElementById('t').innerHTML;
+   let year = document.getElementById('y').innerHTML;
 
    $.ajax({
      url: '/nk.php',
