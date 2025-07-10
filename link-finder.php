@@ -14,7 +14,14 @@ $("document").ready(function() {
      url: '/nk.php',
      data: {t: title, y: year},
      success: function(data) {
-        alert(data);
+          let input = data;
+          const urlPattern = /https?:\/\/[^\s]+?(?=https?:\/\/|$)/;
+
+          // Extract the first URL
+          const match = input.match(urlPattern);
+          const firstURL = match ? match[0] : null;
+
+          alert(firstURL);
      }
    })
 
