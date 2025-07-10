@@ -176,7 +176,7 @@ $formData = array(
 
 $curl = new Curl();
 
-$cookieFile = 'c/cookies.txt';
+$cookieFile = 'c.txt';
 
 // Enable cookie handling
 $curl->setOpt(CURLOPT_COOKIEJAR, $cookieFile); // Save cookies to a file
