@@ -2,6 +2,33 @@
 include "header.php";
 ?>
 
+<style>
+    body {
+      background-color: #0f172a; /* dark navy */
+    }
+    ::placeholder {
+      color: #94a3b8;
+    }
+    /* Skeleton loader styles */
+    .skeleton {
+      animation: pulse 1.5s infinite ease-in-out;
+      background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+      background-size: 200% 100%;
+      border-radius: 0.5rem;
+    }
+    @keyframes pulse {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+  </style>
+
+
+
+
 <!-- ✅ JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
