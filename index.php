@@ -60,7 +60,7 @@ window.onload = function() {
       const div = document.createElement('div');
       div.className = 'rounded-xl overflow-hidden bg-slate-800 shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out';
       div.innerHTML = `
-        <a href="/movies.php?t=${encodeURIComponent(movie.title)}&y=${movie.year}&poster=${encodeURIComponent(movie.poster)}">
+        <a href="/link-finder.php?t=${encodeURIComponent(movie.title)}&y=${movie.year}&poster=${encodeURIComponent(movie.poster)}">
           <img src="${movie.poster}" alt="${movie.title}" class="w-full h-72 object-cover">
           <div class="p-4">
             <h3 class="text-lg font-semibold">${movie.title}</h3>
