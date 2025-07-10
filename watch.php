@@ -85,7 +85,7 @@ include "head.php";
       <div class="w-full md:w-2/3">
         <div class="video-container">
           <video 
-            src="<?php echo strtoupper(htmlspecialchars($_GET['l'])); ?>" 
+            src="<?php if(isset($_GET['l'])) { echo $_GET['l']; } ?>" 
             preload="metadata" 
             data-title="<?php echo strtoupper(htmlspecialchars($title)); ?>"
             controls
