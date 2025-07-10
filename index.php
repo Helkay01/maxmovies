@@ -77,12 +77,23 @@ include "head.php";
   <!-- ✅ Popular Movies Section -->
   <section class="p-6 md:p-12 bg-slate-900">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-8 text-center border-b border-slate-600 pb-4">🔥 Trending Now</h2>
+      <h2 class="text-3xl font-bold mb-8 text-center border-b border-slate-600 pb-4">🔥 Popular Movies</h2>
       <div id="movieGrid" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <!-- Movie cards will be injected here -->
       </div>
     </div>
   </section>
+
+<!-- ✅ New Movies Section -->
+  <section class="p-6 md:p-12 bg-slate-900">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 text-center border-b border-slate-600 pb-4">🔥 New Movies</h2>
+      <div id="new-movieGrid" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <!-- Movie cards will be injected here -->
+      </div>
+    </div>
+  </section>
+
 
 
 
