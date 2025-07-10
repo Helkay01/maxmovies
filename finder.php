@@ -84,7 +84,7 @@ foreach($articles as $article) {
 	
 	}
 		
-		$link2 = $header->getElementsByTagName("a")->item(0)->nodeValue();
+		$link2 = $header->getElementsByTagName("a")->item(0)->nodeValue;
 		
 		if(!str_contains($link2, "Drama") || !str_contains($link2, "TV") || !str_contains($link2, "Series") || !str_contains($link2, "Season") || !str_contains($mTitle, "Episode") || !str_contains($mTitle, "S0") || !str_contains($mTitle, "E0")) {
 			
