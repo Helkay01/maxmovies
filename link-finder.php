@@ -5,6 +5,7 @@ include "header.php";
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 <script type="text/javascript">
 $("document").ready(function() {
    let title = document.getElementById('t').innerHTML;
@@ -14,6 +15,7 @@ $("document").ready(function() {
      url: '/nk.php',
      data: {t: title, y: year},
      success: function(data) {
+        if(data.match("http")) {
           let input = data;
           const urlPattern = /https?:\/\/[^\s]+?(?=https?:\/\/|$)/;
 
@@ -22,6 +24,7 @@ $("document").ready(function() {
           const firstURL = match ? match[0] : null;
 
           alert(firstURL);
+        }
      }
    })
 
@@ -31,6 +34,7 @@ $("document").ready(function() {
 
 </script>
 
+<script src="https://cdn.tailwindcss.com"></script>
 
 
 <?php
@@ -43,10 +47,8 @@ if(isset($_GET['t']) && isset($_GET['y'])) {
     ';
 }  
 
-
-
 ?>
 
 
-
+<div style="position: fixed; top: 30%; left: 45%" class="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
 
