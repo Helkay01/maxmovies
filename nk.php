@@ -28,7 +28,7 @@ function nextPage3($link2, $title, $year) {
 			
 	$curl33 = new Curl();
 	
-   	$cookieFile = 'c/'.$_COOKIE['id'].'/cookies.txt';
+   	$cookieFile = 'c.txt';
 	
 	$curl33->setOpt(CURLOPT_COOKIEJAR, $cookieFile); // Save cookies to a file
 	$curl33->setOpt(CURLOPT_COOKIEFILE, $cookieFile);
@@ -120,7 +120,7 @@ function nextPage3($link2, $title, $year) {
 function nextPage2($link1, $title, $year) {
 	$curl22 = new Curl();
 	
-   	$cookieFile = 'c/'.$_COOKIE['id'].'/cookies.txt';
+   	$cookieFile = 'c.txt';
 	
 	// Enable cookie handling
 	$curl22->setOpt(CURLOPT_COOKIEJAR, $cookieFile); // Save cookies to a file
