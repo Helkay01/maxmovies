@@ -22,7 +22,52 @@ $poster = $_GET['poster'] ?? '';
       border-radius: 1rem;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     }
+
+  
+    ::placeholder {
+      color: #94a3b8;
+    }
+    /* Skeleton loader styles */
+    .skeleton {
+      animation: pulse 1.5s infinite ease-in-out;
+      background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+      background-size: 200% 100%;
+      border-radius: 0.5rem;
+    }
+    @keyframes pulse {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+    
   </style>
+
+<!-- ✅ JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+window.onload = function() {
+
+      //var title = $("#t").text().trim();
+
+      // Render skeleton loader grid (8 items)
+      const skeletonHTML = Array(8).fill(`
+        <div class="skeleton w-full h-64"></div>
+      `).join("");
+      $("#new-movieGrid").html(skeletonHTML);
+
+      $.ajax({
+        url: '/latest-movies-ajax.php',
+        success: function(data) {
+          $("#new-movieGrid").html(data);
+        },
+        error: function() {
+          $("#new-movieGrid").html('<p class="text-center text-red-400 col-span-full">Failed to load movies. Please try again.</p>');
+        }
+      });
+
+}
 
 
 <?php
