@@ -29,7 +29,7 @@ $("document").ready(function() {
 <?php
 include "head.php";
 
-if(isset($_GET['t']) && isset($_GET['y']) {
+if(isset($_GET['t']) && isset($_GET['y'])) {
    echo '
        <div id="t">'.$_GET['t'].'</div>
        <div id="y">'.$_GET['y'].'</div>
