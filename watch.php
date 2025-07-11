@@ -86,7 +86,7 @@ include "head.php";
     <div class="relative z-10 max-w-6xl mx-auto px-4 py-24 flex flex-col md:flex-row items-center gap-10">
       <div class="w-full md:w-2/3">
         <div class="video-container">
-          <video 
+          <video height="400px" 
             src="<?php if(isset($_GET['l'])) { echo $_GET['l']; } ?>" 
             preload="metadata" 
             data-title="<?php echo strtoupper(htmlspecialchars($title)); ?>"
