@@ -12,7 +12,7 @@ $poster = $_GET['poster'] ?? '';
   <title>Watch <?php echo htmlspecialchars($title); ?> | Movie Finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="vplayer.min.js"></script>
+  
 
   <style>
     .backdrop {
