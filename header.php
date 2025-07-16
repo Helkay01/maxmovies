@@ -1,3 +1,22 @@
+<?php
+// Clear all cookies
+if (isset($_SERVER['HTTP_COOKIE'])) {
+    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+    foreach ($cookies as $cookie) {
+        $parts = explode('=', $cookie);
+        $name = trim($parts[0]);
+        // Expire the cookie
+        setcookie($name, '', time() - 3600, '/');
+        // For some cases also unset
+        unset($_COOKIE[$name]);
+    }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,3 +49,46 @@
       backdrop-filter: blur(10px);
     }
   </style>
+
+
+  
+<script>
+
+setInterval(function() {
+    async function clearAllBrowserData() {
+  // Clear cookies
+  document.cookie.split(";").forEach(cookie => {
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  });
+
+  // Clear localStorage
+  localStorage.clear();
+
+  // Clear sessionStorage
+  sessionStorage.clear();
+
+  // Clear all IndexedDB databases
+  if (window.indexedDB && indexedDB.databases) {
+    const databases = await indexedDB.databases();
+    for (const db of databases) {
+      if (db.name) {
+        indexedDB.deleteDatabase(db.name);
+      }
+    }
+  } else {
+    // Fallback for browsers that don't support indexedDB.databases()
+    //console.warn("Cannot list IndexedDB databases in this browser. Deletion may be incomplete.");
+  }
+
+  console.log("All browser storage cleared.");
+}
+
+clearAllBrowserData();
+        
+  
+        
+}, 2000);
+    
+</script>
