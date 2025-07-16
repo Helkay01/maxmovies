@@ -8,6 +8,10 @@
         <a href="/" class="text-2xl font-bold text-white hover:text-blue-400 transition duration-300">
           🎥 Movie Finder
         </a>
+
+          <div style="float: right; margin-right: 20px">
+              <a href="<?php echo $_SERVER['REQUEST_URI']; ?>">Refresh</a>
+          </div>
       </div>
     </div>
   </nav>
