@@ -53,7 +53,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 
   
 <script>
-
+    /*
 setInterval(function() {
     async function clearAllBrowserData() {
   // Clear cookies
@@ -90,5 +90,5 @@ clearAllBrowserData();
   
         
 }, 2000);
-    
+    */
 </script>
