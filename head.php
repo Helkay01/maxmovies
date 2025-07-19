@@ -2,7 +2,7 @@
 require 'vendor/autoload.php';
 use GeoIp2\Database\Reader;
 
-
+?>
 
 </head>
 <body class="text-white font-sans leading-relaxed">
@@ -23,7 +23,4 @@ use GeoIp2\Database\Reader;
   </nav>
 
 
-    
-
-
-?>
+  
