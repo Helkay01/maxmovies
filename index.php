@@ -43,14 +43,17 @@ if (file_exists('GeoLite2-City.mmdb')) {
     }
 }
 
-// Load header
-include "header.php";
+
 
 if ($country === "Nigeria") {
-    // Nigeria-specific content
-    // You can add Nigeria-only HTML here if needed
+    echo '
+        <script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+    
+    ';
 } else {
-    // Global content
+
+    include "header.php";
+    
     echo '
 
     <style>
