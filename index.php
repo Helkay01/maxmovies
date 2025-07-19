@@ -14,8 +14,8 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 }
 
 // Define IP function if not already declared
-if (!function_exists('getClientIp')) {
-    function getClientIp() {
+if (!function_exists('getIndexClientIp')) {
+    function getIndexClientIp() {
         if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
             return trim($ips[0]);
@@ -25,7 +25,7 @@ if (!function_exists('getClientIp')) {
 }
 
 // Get client IP
-$ip = getClientIp();
+$ip = getIndexClientIp();
 
 // Default values
 $timezone = 'Unknown';
