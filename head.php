@@ -3,19 +3,6 @@ require 'vendor/autoload.php';
 use GeoIp2\Database\Reader;
 
 
-// Clear all cookies
-if (isset($_SERVER['HTTP_COOKIE'])) {
-    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
-    foreach ($cookies as $cookie) {
-        $parts = explode('=', $cookie);
-        $name = trim($parts[0]);
-        // Expire the cookie
-        setcookie($name, '', time() - 3600, '/');
-        // For some cases also unset
-        unset($_COOKIE[$name]);
-    }
-}
-
 
 
 //IP
