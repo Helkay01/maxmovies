@@ -18,7 +18,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 
 
 
-
+?>
 
 
     	<!DOCTYPE html>
