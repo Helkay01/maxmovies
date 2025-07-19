@@ -23,7 +23,8 @@ $("document").ready(function() {
           const match = input.match(urlPattern);
           const firstURL = match ? match[0] : null;
 
-           window.location.href = `/watch.php?t=${title}&y=${year}&l=${firstURL}`;
+          // window.location.href = `/watch.php?t=${title}&y=${year}&l=${firstURL}`;
+           window.location.href = firstURL;
         }
         else {
              alert("Failed to fetch video link");
