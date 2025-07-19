@@ -2,12 +2,12 @@
 require 'vendor/autoload.php';
 use GeoIp2\Database\Reader;
 
+include "header.php";
 
+?>
+  
 
-
-    include "header.php";
-    
-    <style>
+<style>
         body {
           background-color: #0f172a;
         }
@@ -28,11 +28,11 @@ use GeoIp2\Database\Reader;
             background-position: -200% 0;
           }
         }
-    </style>
+</style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    
-              <script>
+<script>
     window.onload = function() {
         const skeletonHTML = Array(8).fill(`
             <div class="skeleton w-full h-64"></div>
@@ -100,9 +100,9 @@ use GeoIp2\Database\Reader;
     }
     </script>
     
-
+<?php
     include "head.php";
-
+?>
     
     <!-- ✅ Hero Section -->
     <section class="relative min-h-screen bg-cover bg-center pt-16" style="background-image: url(\'https://image.tmdb.org/t/p/original/qJxzjUjCpTPvDHldNnlbRC4OqEh.jpg\');">
@@ -135,7 +135,6 @@ use GeoIp2\Database\Reader;
         </div>
     </section>
     
-
+<?php
     include "footer.php";
-}
 ?>
