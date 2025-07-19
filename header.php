@@ -61,7 +61,7 @@ echo '
   gtag("config", "G-R9QCCJ62Y8");
 </script>
   
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
     body {
       background-color: #0f172a;
