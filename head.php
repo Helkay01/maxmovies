@@ -19,7 +19,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 
 
 //IP
-function getClientIp() {
+function getHeadClientIp() {
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
         return trim($ips[0]); // First IP is the real client IP
@@ -28,7 +28,7 @@ function getClientIp() {
     return $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 }
 
-$ip = getClientIp();
+$ip = getHeadClientIp();
 
 $reader = new Reader('GeoLite2-City.mmdb');
 $record = $reader->city($ip);
@@ -65,7 +65,7 @@ echo '
 ';    
 
 }
-else (
+else {
 	echo '
 
    		</head>
@@ -87,7 +87,7 @@ else (
 			  </nav>
 
  	';
-)
+}
 
 	
 ?>
