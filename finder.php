@@ -93,7 +93,7 @@ foreach($articles as $article) {
 				if(str_contains($link2, ucwords($title_array[0])) || str_contains($link2, strtoupper($title_array[0])) || str_contains($link2, strtolower($title_array[0]))) {
 	
 						echo '
-							<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+							<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 								<img src="'.$img.'">
 						
 								<div>
@@ -109,7 +109,7 @@ foreach($articles as $article) {
 					if(str_contains($link2, ucwords($title_array[1])) || str_contains($link2, strtoupper($title_array[1])) || str_contains($link2, strtolower($title_array[1]))) {	
 			
 						echo '
-							<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+							<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 							<img src="'.$img.'">
 							
 							<div>
@@ -128,7 +128,7 @@ foreach($articles as $article) {
 						if(str_contains($link2, ucwords($title_array[2])) || str_contains($link2, strtoupper($title_array[2]))  || str_contains($link2, strtolower($title_array[2]))) {
 				
 							echo '
-								<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+								<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 								<img src="'.$img.'">
 								
 								<div>
@@ -150,7 +150,7 @@ foreach($articles as $article) {
 								if(str_contains($yr, $year)) {
 								
 								echo '
-									<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+									<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 									<img src="'.$img.'">
 									
 									<div>
@@ -174,7 +174,7 @@ foreach($articles as $article) {
 								if(str_contains($link2, ucwords($title_array[4])) || str_contains($link2, strtoupper($title_array[4]))  || str_contains($link2, strtolower($title_array[4]))) {	
 						
 									echo '
-										<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+										<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 										<img src="'.$img.'">
 										
 										<div>
@@ -200,7 +200,7 @@ foreach($articles as $article) {
 									if(str_contains($link2, ucwords($title_array[5])) || str_contains($link2, strtoupper($title_array[5]))  || str_contains($link2, strtolower($title_array[5]))) {		
 						
 										echo '
-											<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+											<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 											<img src="'.$img.'">
 											
 											<div>
@@ -227,7 +227,7 @@ foreach($articles as $article) {
 										if(str_contains($link2, ucwords($title_array[6])) || str_contains($link2, strtoupper($title_array[6]))  || str_contains($link2, strtolower($title_array[6]))) {		
 								
 											echo '
-												<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+												<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 												<img src="'.$img.'">
 												
 												<div>
@@ -256,7 +256,7 @@ foreach($articles as $article) {
 											if(str_contains($link2, ucwords($title_array[7])) || str_contains($link2, strtoupper($title_array[7]))  || str_contains($link2, strtolower($title_array[7]))) {				
 								
 												echo '
-													<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+													<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 													<img src="'.$img.'">
 													
 													<div>
@@ -288,7 +288,7 @@ foreach($articles as $article) {
 												if(str_contains($link2, ucwords($title_array[8])) || str_contains($link2, strtoupper($title_array[8]))  || str_contains($link2, strtolower($title_array[8]))) {						
 										
 													echo '
-														<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+														<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 														<img src="'.$img.'">
 														
 														<div>
@@ -322,7 +322,7 @@ foreach($articles as $article) {
 													if(str_contains($link2, ucwords($title_array[9])) || str_contains($link2, strtoupper($title_array[9]))  || str_contains($link2, strtolower($title_array[9]))) {								
 												
 														echo '
-															<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/link-finder.php?t='.$result.'&y='.$yr.'&img='.$img.'">
+															<span class="movies" data-type="movies" data-img="'.$img.'" data-title="'.$result.'" data-year="'.$yr.'"><a href="/watch.php?t='.$result.'&y='.$yr.'&img='.$img.'">
 															<img src="'.$img.'">
 															
 															<div>
