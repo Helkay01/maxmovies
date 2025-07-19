@@ -45,7 +45,7 @@ include "header.php";
                 $("#new-movieGrid").html(data);
             },
             error: function() {
-                $("#new-movieGrid").html(\'<p class="text-center text-red-400 col-span-full">Failed to load movies. Please try again.</p>\');
+                $("#new-movieGrid").html('<p class="text-center text-red-400 col-span-full">Failed to load movies. Please try again.</p>');
             }
         });
 
