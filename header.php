@@ -1,4 +1,8 @@
 <?php
+require 'vendor/autoload.php';
+use GeoIp2\Database\Reader;
+
+
 // Clear all cookies
 if (isset($_SERVER['HTTP_COOKIE'])) {
     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
@@ -34,13 +38,9 @@ $timezone = $record->location->timeZone;
 $country = $record->country->name;
 
 
+if($country === "Nigeria")  {
 
-    
-?>
-
-
-
-
+echo '
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,9 +56,9 @@ $country = $record->country->name;
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  gtag("js", new Date());
 
-  gtag('config', 'G-R9QCCJ62Y8');
+  gtag("config", "G-R9QCCJ62Y8");
 </script>
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -80,3 +80,13 @@ $country = $record->country->name;
 <script>
      
 </script>
+
+
+
+';
+
+
+}
+    
+
+?>
