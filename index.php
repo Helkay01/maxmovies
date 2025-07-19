@@ -2,60 +2,11 @@
 require 'vendor/autoload.php';
 use GeoIp2\Database\Reader;
 
-// Clear all cookies
-if (isset($_SERVER['HTTP_COOKIE'])) {
-    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
-    foreach ($cookies as $cookie) {
-        $parts = explode('=', $cookie);
-        $name = trim($parts[0]);
-        setcookie($name, '', time() - 3600, '/');
-        unset($_COOKIE[$name]);
-    }
-}
-
-// Define IP function if not already declared
-if (!function_exists('getIndexClientIp')) {
-    function getIndexClientIp() {
-        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            return trim($ips[0]);
-        }
-        return $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
-    }
-}
-
-// Get client IP
-$ip = getIndexClientIp();
-
-// Default values
-$timezone = 'Unknown';
-$country = 'Unknown';
-
-// Check GeoLite2 DB and get location
-if (file_exists('GeoLite2-City.mmdb')) {
-    try {
-        $reader = new Reader('GeoLite2-City.mmdb');
-        $record = $reader->city($ip);
-        $timezone = $record->location->timeZone ?? 'Unknown';
-        $country = $record->country->name ?? 'Unknown';
-    } catch (Exception $e) {
-        // Log error or silently fail
-    }
-}
 
 
-
-if ($country === "Nigeria") {
-    echo '
-        <script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
-    
-    ';
-} else {
 
     include "header.php";
     
-    echo '
-
     <style>
         body {
           background-color: #0f172a;
@@ -80,7 +31,8 @@ if ($country === "Nigeria") {
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
+   
+              <script>
     window.onload = function() {
         const skeletonHTML = Array(8).fill(`
             <div class="skeleton w-full h-64"></div>
@@ -147,11 +99,11 @@ if ($country === "Nigeria") {
         });
     }
     </script>
-    ';
+    
 
     include "head.php";
 
-    echo '
+    
     <!-- ✅ Hero Section -->
     <section class="relative min-h-screen bg-cover bg-center pt-16" style="background-image: url(\'https://image.tmdb.org/t/p/original/qJxzjUjCpTPvDHldNnlbRC4OqEh.jpg\');">
         <div class="absolute inset-0 bg-black bg-opacity-80 flex flex-col justify-center items-center text-center px-6">
@@ -182,7 +134,7 @@ if ($country === "Nigeria") {
             </div>
         </div>
     </section>
-    ';
+    
 
     include "footer.php";
 }
