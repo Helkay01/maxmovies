@@ -61,7 +61,7 @@ foreach($articles as $article) {
 
 		$output[] = '
 				<div class="rounded-xl overflow-hidden bg-slate-800 shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out">
-				        <a href="/link-finder.php?t='.$result.'&y='.$year.'&img='.$img.'">
+				        <a href="/watch.php?t='.$result.'&y='.$year.'&img='.$img.'">
           					<img src="'.$img.'" class="w-full h-72 object-cover">
           					<div class="p-4">
 				            		<h3 class="text-lg font-semibold">'.$result.'</h3>
