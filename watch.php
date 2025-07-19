@@ -100,7 +100,7 @@ include "head.php";
         <p class="text-slate-300 mb-4 text-lg">Year: <?php echo htmlspecialchars($year); ?></p>
         <p class="text-slate-400 text-sm italic">Enjoy streaming in HD. Suggestions and more below!</p>
         <p style="width: 150px; margin-top: 10px; margin-bottom: 10px; padding: 3px; border: 1px solid red; background: red; color: white; cursor: pointer; border-radius: 3px; " class="text-slate-400 text-sm italic"><a href="<?php echo $_SERVER['REQUEST_URI']; ?>">Watch online</a></p>
-        <p style="width: 100px; margin-bottom: 10px; padding: 3px; border: 1px solid green; background: green; color: white; cursor: pointer; border-radius: 3px; class="text-slate-400 text-sm italic"><a href="<?php if(isset($_GET['l'])) { echo $_GET['l']; } ?>">Download</a></p>
+        <p style="width: 100px; margin-bottom: 10px; padding: 3px; border: 1px solid green; background: green; color: white; cursor: pointer; border-radius: 3px; class="text-slate-400 text-sm italic"><a href="/link-finder.php">Download</a></p>
       </div>
     </div>
   </div>
