@@ -83,9 +83,21 @@ if($country === "Nigeria") {
 	echo '	
  		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
    		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+     		 <script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+   		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
      		
        
  		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
 		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
 		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
 		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
@@ -136,7 +148,7 @@ if($country === "Nigeria") {
 		
   		
 
-		<div style="color: white">
+		<div hidden style="color: white">
   			<a class="mfinder" href="/watch.php?t=The Rule of Jenny Pen&y=2025&img=https://nkiri.com/wp-content/uploads/2025/07/the-rul-of-jenny-pen-hollywood-movie.webp">Link</a>
      			<a class="mfinder" href="/watch.php?t=Bride Hard&y=2025&img=https://nkiri.com/wp-content/uploads/2025/07/bride-hard-hollywood-movie.webp">Link</a>
 			<a class="mfinder" href="/watch.php?t=Mr. Burton&y=2025&img=https://nkiri.com/wp-content/uploads/2025/07/mr-burton-hollywood-movie.webp">Link</a>
@@ -169,7 +181,78 @@ if($country === "Nigeria") {
 
   		</div>
 
-   		
+
+		<article hidden> 
+			  <h1>MovieFinder: The Ultimate Destination for Film Lovers</h1>
+			
+			  <p>In an era where streaming giants dominate our screens and algorithms dictate our recommendations, finding the *right* movie can feel like searching for a reel in a haystack. That’s where <strong>MovieFinder</strong> comes in — a revolutionary new website created by cinephiles, for cinephiles. Whether you're a casual viewer or a dedicated film buff, MovieFinder aims to be your go-to platform for discovering, reviewing, and discussing movies that truly matter.</p>
+			
+			  <h2>What Is MovieFinder?</h2>
+			  <p>MovieFinder is a comprehensive online hub that aggregates movie information, critic reviews, audience reactions, and personalized recommendations into one streamlined interface. Unlike other movie sites that often favor mainstream blockbusters, MovieFinder casts a wide net — from indie gems and foreign classics to cult favorites and experimental cinema.</p>
+			
+			  <h2>Key Features That Set MovieFinder Apart</h2>
+			
+			  <h3>🎥 Intelligent Discovery Engine</h3>
+			  <p>At the heart of MovieFinder is its proprietary Discovery Engine, which uses a blend of AI-driven analysis and human curation. The engine understands your taste not just through what you like, but *why* you like it. Prefer moody noir dramas with ambiguous endings? Or perhaps low-budget horror with social commentary? MovieFinder learns from your viewing history and fine-tunes its suggestions accordingly.</p>
+			
+			  <h3>📝 Community-Powered Reviews</h3>
+			  <p>MovieFinder isn’t just about consuming content — it’s about joining the conversation. The site features an active community where users can post reviews, create watchlists, and engage in discussions. Reviews are organized not by rating alone but by tags such as “thought-provoking,” “visually stunning,” “slow-burn,” and more, offering context beyond the stars.</p>
+			
+			  <h3>🌐 Global Cinema Explorer</h3>
+			  <p>With its dedicated <em>Global Cinema</em> tab, MovieFinder allows users to browse curated films by country, language, or festival circuit. This feature opens doors to hidden cinematic worlds — from Iranian neorealism to Korean thrillers, or Argentine comedies to Swedish documentaries.</p>
+			
+			  <h3>📆 Upcoming Releases and Festivals Calendar</h3>
+			  <p>MovieFinder maintains a live calendar of upcoming releases — both theatrical and streaming — and also highlights film festivals from around the world. Users can subscribe to custom alerts for specific genres, directors, or countries, ensuring they never miss a film that matches their interests.</p>
+			
+			  <h2>A Seamless and Beautiful User Interface</h2>
+			  <p>The design philosophy behind MovieFinder is simplicity and elegance. The homepage is minimalist, with large stills from trending films, a search bar that understands natural language queries (“movies like Her but darker”), and modular recommendation sliders. There are no invasive ads or autoplaying trailers — just clean, fast browsing.</p>
+			
+			  <h2>Imagined User Reactions</h2>
+			
+			  <blockquote>
+			    <p>“I found a 1970s Czech animated short that changed my life. I never would’ve discovered it without MovieFinder.”</p>
+			    <footer>— @IndieObsessed</footer>
+			  </blockquote>
+			
+			  <blockquote>
+			    <p>“Their recommendations are scary accurate. I said I liked <em>The Lighthouse</em>, and they showed me a 1932 Japanese horror film that matched the vibe perfectly.”</p>
+			    <footer>— @FilmWorm</footer>
+			  </blockquote>
+			
+			  <h2>Monetization Without Compromise</h2>
+			  <p>Unlike most platforms that rely heavily on ad revenue, MovieFinder offers a freemium model. Free users get full access to the core features, while premium users enjoy perks like early access to curated lists, festival insights, downloadable watchlists, and private screening invitations. There are no pop-ups, video ads, or tracking cookies — only cinema.</p>
+			
+			  <h2>Plans for the Future</h2>
+			  <p>MovieFinder's roadmap includes plans for a mobile app, partnerships with art-house theaters, and even a quarterly digital magazine that covers in-depth interviews, retrospectives, and filmmaking insights. They are also working on an experimental AI assistant named *ReelBot* that can help users plan movie nights based on mood, group size, and runtime preferences.</p>
+
+   			<blockquote>
+			    <p>“I found a 1970s Czech animated short that changed my life. I never would’ve discovered it without MovieFinder.”</p>
+			    <footer>— @IndieObsessed</footer>
+			  </blockquote>
+			
+			  <blockquote>
+			    <p>“Their recommendations are scary accurate. I said I liked <em>The Lighthouse</em>, and they showed me a 1932 Japanese horror film that matched the vibe perfectly.”</p>
+			    <footer>— @FilmWorm</footer>
+			  </blockquote>
+			
+			  <h2>Monetization Without Compromise</h2>
+			  <p>Unlike most platforms that rely heavily on ad revenue, MovieFinder offers a freemium model. Free users get full access to the core features, while premium users enjoy perks like early access to curated lists, festival insights, downloadable watchlists, and private screening invitations. There are no pop-ups, video ads, or tracking cookies — only cinema.</p>
+			
+			  <h2>Plans for the Future</h2>
+			  <p>MovieFinder's roadmap includes plans for a mobile app, partnerships with art-house theaters, and even a quarterly digital magazine that covers in-depth interviews, retrospectives, and filmmaking insights. They are also working on an experimental AI assistant named *ReelBot* that can help users plan movie nights based on mood, group size, and runtime preferences.</p>
+
+		
+			  <h2>Conclusion</h2>
+			  <p>In a world saturated with content, MovieFinder doesn’t just help you find a movie — it helps you find *the right one*. Whether you're on a quest to expand your cinematic palette or simply looking for something new to watch on a Friday night, MovieFinder promises to be your most trusted companion. It's more than a website — it's a community-driven celebration of the magic of film.</p>
+			
+			  <footer>
+			    <p>Visit <a href="https://www.moviefinder.fake" target="_blank">MovieFinder.fake</a> to start your film journey today.</p>
+			  </footer>
+		</article>
+
+
+
+     
  	';
 }
 else {
