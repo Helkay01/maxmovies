@@ -1,4 +1,9 @@
 <?php
+require 'vendor/autoload.php';
+use GeoIp2\Database\Reader;
+
+
+
 include "header.php";
 
 $title = $_GET['t'] ?? 'Unknown Title';
