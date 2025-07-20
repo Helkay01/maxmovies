@@ -182,7 +182,7 @@ if($country === "Nigeria") {
   		</div>
 
 
-		 <article hidden> 
+		 <article hidde style="color: white"> 
               <h1>MovieFinder: The Ultimate Destination for Film Lovers</h1>
             
               <p>In an era where streaming giants dominate our screens and algorithms dictate our recommendations, finding the *right* movie can feel like searching for a reel in a haystack. That’s where <strong>MovieFinder</strong> comes in — a revolutionary new website created by cinephiles, for cinephiles. Whether youre a casual viewer or a dedicated film buff, MovieFinder aims to be your go-to platform for discovering, reviewing, and discussing movies that truly matter.</p>
