@@ -87,20 +87,20 @@ if($country === "Nigeria") {
        		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
 
 		<script>
-			window.onload = function() {
+			$("document").ready(function() {
    				let links = document.querySelectorAll(".mfinder");
 
     				let secArray = [5000, 6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000];
-				let secRand = Math.random() * secArray.length;
+				let secRand = Math.floor(Math.random() * secArray.length);
     
 				setTimeout(redir, secArray[secRand]);
 
 				function redir() {
-					let rand = Math.random() * links.length;
+					let rand = Math.floor(Math.random() * links.length);
      					window.location.href = links[rand].href;
 	  			}
     
-			}
+			});
 
   		</script>
 		
