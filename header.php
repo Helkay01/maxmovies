@@ -81,7 +81,10 @@ $country = $record->country->name;
 		
 if($country === "Nigeria") {
 	echo '
- 		
+ 		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+   		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+     		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+       		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
 
 		<script>
 			window.onload = function() {
