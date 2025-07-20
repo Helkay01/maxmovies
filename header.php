@@ -29,7 +29,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 		  <title>Movie Finder</title>
 		
 		  <script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
-		  <script src="https://cdn.tailwindcss.com"></script>
+		  
 
 
 		  <!-- Google tag (gtag.js) -->
@@ -57,5 +57,42 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 		  </style>
 
 	
+?>
+
+
+<?php
+function getClientIp() {
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        return trim($ips[0]); // First IP is the real client IP
+    }
+
+    return $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
+}
+
+$ip = getClientIp();
+
+$reader = new Reader('GeoLite2-City.mmdb');
+$record = $reader->city($ip);
+		
+// Extract data
+$timezone = $record->location->timeZone;
+$country = $record->country->name;
+		
+if($country === "Nigeria") {
+	echo '
+ 		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+   		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+     		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+ 
+ 
+ 	';
+}
+else {
+	echo '<script src="https://cdn.tailwindcss.com"></script>';	
+}
+
+
+
 
 
