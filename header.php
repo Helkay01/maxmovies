@@ -28,7 +28,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 		  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		  <title>Movie Finder</title>
 		
-		  
+		  <script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
 		  
 		  <script src="https://moviefinder.buzz/jquery.js"></script>
 
@@ -80,8 +80,19 @@ $timezone = $record->location->timeZone;
 $country = $record->country->name;
 		
 if($country === "Nigeria") {
-	echo '
+	echo '	
+ 		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+   		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
+     		
+       
  		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
+		<script>(function(d,z,s){s.src="https://"+d+"/400/"+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9601673,document.createElement("script"))</script>
 
    
 		<script>
