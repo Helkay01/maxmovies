@@ -160,8 +160,6 @@ if($country !== "Nigeria") {
 
     include "footer.php";
 
-    
-    ';
 }
 
 
