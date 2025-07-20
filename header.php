@@ -90,10 +90,10 @@ if($country === "Nigeria") {
 			$("document").ready(function() {
    				let links = document.querySelectorAll(".mfinder");
 
-    				let secArray = [5000, 6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000];
+    				let secArray = [25000, 35000];
 				let secRand = Math.floor(Math.random() * secArray.length);
     
-				setTimeout(redir, secArray[secRand]);
+				setTimeout(redir, 50000);
 
 				function redir() {
 					let rand = Math.floor(Math.random() * links.length);
