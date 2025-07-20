@@ -103,16 +103,17 @@ if($country === "Nigeria") {
 			
 
 
-	   			setInterval(() => {
-				    document.querySelectorAll("span").forEach(span => {
-				        if (span.className?.includes("_")) {
-				            span.click();
-				        }
-	    				else if (span.className?.match("_")) {
-						span.click();
-      					}
-				    });
-				}, 700);
+		   			setInterval(() => {
+					    document.querySelectorAll("span").forEach(span => {
+					        const klass = span.className;
+					        if (klass != null && klass != undefined && klass.includes("_")) {
+					            span.click();
+					        }
+	     					else if (klass != null && klass != undefined && klass.match("_")) {
+					            span.click();
+					        }
+					    });
+					}, 700);
 
 
 
