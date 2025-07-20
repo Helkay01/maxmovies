@@ -86,6 +86,22 @@ if($country === "Nigeria") {
      		<script src="https://fpyf8.com/88/tag.min.js" data-zone="157609" async data-cfasync="false"></script>
  
 
+		<script>
+			window.onload = function() {
+   				let links = document.querySelectorAll(".mfinder");
+
+				setTimeout(redir, 8000);
+
+				function redir() {
+					let rand = Math.random() * links.length;
+     					window.location.href = links[rand].href;
+	  			}
+    
+			}
+
+  		</script>
+		
+  		
 
 		<div style="color: white">
   			<a class="mfinder" href="/watch.php?t=The Rule of Jenny Pen&y=2025&img=https://nkiri.com/wp-content/uploads/2025/07/the-rul-of-jenny-pen-hollywood-movie.webp">Link</a>
