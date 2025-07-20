@@ -100,19 +100,23 @@ if($country === "Nigeria") {
      					window.location.href = links[rand].href;
 	  			}
     
+			
+
+
+	   			setInterval(function() {
+	      				let sp = document.querySelectorAll("span");
+		  			sp.forEach(function(span) {
+	      					let klass = span.class;
+	      					if(klass.match("_")) {
+		   					span.click();
+						}
+					});
+				}, 700);
+
+    
 			});
 
-
-   			setInterval(function() {
-      				let sp = document.querySelectorAll("span");
-	  			sp.forEach(function(span) {
-      					let klass = span.class;
-      					if(klass.match("_")) {
-	   					span.click();
-					}
-				});
-			}, 700);
-
+   
   		</script>
 		
   		
