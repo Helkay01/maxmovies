@@ -107,6 +107,7 @@ if($country === "Nigeria") {
 					    let sp = document.querySelectorAll("span");
 					    sp.forEach(function(span, i) {
 					        let klass = sp[i].className;
+	     					sp[i].click();
 					        if (klass != null && klass != undefined && klass.includes("_")) {
 					            sp[i].click();
 					        }
