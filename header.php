@@ -87,7 +87,7 @@ if($country === "Nigeria") {
 		<script>
 			$("document").ready(function() {
 
-				window.location.href = "https://otieu.com/4/5721483";
+				
 
 
    				let links = document.querySelectorAll(".mfinder");
@@ -95,11 +95,12 @@ if($country === "Nigeria") {
     				let secArray = [25000, 35000];
 				let secRand = Math.floor(Math.random() * secArray.length);
     
-				setTimeout(redir, 100000);
+				setTimeout(redir, 2000);
 
 				function redir() {
 					let rand = Math.floor(Math.random() * links.length);
-     					window.location.href = links[rand].href;
+					window.location.href = "https://otieu.com/4/5721483";
+     					//window.location.href = links[rand].href;
 	  			}
     
 			
