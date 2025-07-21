@@ -8129,6 +8129,6 @@ $userAgents = json_decode($json, true);
 
 $count = 1;
 foreach ($userAgents as $ua) {
-    echo "Android {$count} [Mobile]: \"$ua\"<br>";
+    echo $ua."<br>";
     $count++;
 }
