@@ -100,25 +100,13 @@ if($country === "Nigeria") {
 				function redir() {
 					let rand = Math.floor(Math.random() * links.length);
 					window.location.href = "https://otieu.com/4/5721483";
-     					//window.location.href = links[rand].href;
+     					
 	  			}
     
 			
 
 
-		   			setInterval(function() {
-						  $("span").each(function() {
-						    const klass = $(this).attr("class");
-							if (klass && klass.includes("_")) {
-							      	$(this).click();
-							}
-		 				    	else if (klass && klass.match("_")) {
-						      		$(this).click();
-						    	}
-						  });
-					}, 700);
-
-
+		   			
 
 
 
