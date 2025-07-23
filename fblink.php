@@ -269,7 +269,22 @@ if ($curl->error) {
 } else {
     $html = $curl->response;
 
-  echo $html;
   
+  	// Load HTML
+$doc = new DOMDocument();
+libxml_use_internal_errors(true); // Suppress HTML5 warnings
+$doc->loadHTML($html);
+libxml_clear_errors();
+
+// Create XPath
+$xpath = new DOMXPath($doc);
+
+// Search for <a> tags with href containing "otieu"
+$nodes = $xpath->query('//a[contains(@href, "otieu")]');
+
+// Output results
+foreach ($nodes as $node) {
+    echo $node->getAttribute('href') . "\n";
+}
     
 }
