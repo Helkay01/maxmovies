@@ -268,7 +268,7 @@ if ($curl->error) {
     //error
 } else {
     $html = $curl->response;
-
+echo $html;
   
   	// Load HTML
 $doc = new DOMDocument();
