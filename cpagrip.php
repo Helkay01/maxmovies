@@ -162,7 +162,7 @@ let userCountry = countryEl.innerText.trim();
 const countries = [
   {
     name: "United States",
-    link: "https://example.com/us-offer" // 🔥 PUT YOUR CPA LINK HERE
+    link: "https://optilinklock.com/1883648"
   },
   {
     name: "Canada",
@@ -171,6 +171,10 @@ const countries = [
   {
     name: "United Kingdom",
     link: "https://example.com/uk-offer"
+  },
+  {
+	name: "Nigeria",
+	link: "https://optilinklock.com/1883642"
   }
 ];
 
