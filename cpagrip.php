@@ -3,34 +3,47 @@ require 'vendor/autoload.php';
 
 use GeoIp2\Database\Reader;
 
+// ✅ Get real client IP
 function getClientIp() {
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-        return trim($ips[0]); // First IP is the real client IP
+        return trim(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0]);
     }
-
     return $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 }
 
 $ip = getClientIp();
-	
 
-$reader = new Reader('GeoLite2-City.mmdb');
-$record = $reader->city($ip);
-		
-// Extract data
-$timezone = $record->location->timeZone;
-$country = $record->country->name;
-		
+// ✅ Generate click ID
+$click_id = uniqid("clk_", true);
 
+// ✅ Detect country
+try {
+    $reader = new Reader('GeoLite2-City.mmdb');
+    $record = $reader->city($ip);
+    $country = $record->country->name ?? "Unknown";
+    $reader->close();
+} catch (Exception $e) {
+    $country = "Unknown";
+}
 
-$reader->close();
+// ✅ Offer mapping
+$offers = [
+    "United States" => "https://optilinklock.com/1883648?click_id=$click_id",
+    "Nigeria" => "https://optilinklock.com/1883642?click_id=$click_id",
+    "Canada" => "https://example.com/ca?click_id=$click_id",
+    "United Kingdom" => "https://example.com/uk?click_id=$click_id"
+];
 
+// ✅ Check if offer exists
+$hasOffer = array_key_exists($country, $offers);
+$selectedOffer = $hasOffer ? $offers[$country] : "";
 
-
+// ✅ Optional logging
+file_put_contents("click_log.txt",
+    date("Y-m-d H:i:s") . " | $ip | $country | $click_id\n",
+    FILE_APPEND
+);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,18 +131,15 @@ h1 {
 <div class="container">
     <div class="card">
 
-
-	<div id="country" hidden><?php echo $country; ?></div>
-
         <h1>Quick Eligibility Check</h1>
-		
+
         <div class="progress">
             <div class="progress-bar" id="progress"></div>
         </div>
 
         <div id="step1">
-            <div class="question">
-                Are you located in the United States?
+            <div class="question" id="questionText">
+                Checking your location...
             </div>
 
             <a href="#" class="btn" onclick="nextStep()">Yes</a>
@@ -156,30 +166,10 @@ h1 {
 </div>
 
 <script>
-let countryEl = document.getElementById("country");
-let userCountry = countryEl.innerText.trim();
-
-const countries = [
-  {
-    name: "United States",
-    link: "https://optilinklock.com/1883648"
-  },
-  {
-    name: "Canada",
-    link: "https://example.com/ca-offer"
-  },
-  {
-    name: "United Kingdom",
-    link: "https://example.com/uk-offer"
-  },
-  {
-	name: "Nigeria",
-	link: "https://optilinklock.com/1883642"
-  }
-];
-
-// Find matching country
-let selectedOffer = countries.find(c => c.name === userCountry);
+let userCountry = "<?php echo $country; ?>";
+let offerLink = "<?php echo $selectedOffer; ?>";
+let hasOffer = <?php echo $hasOffer ? 'true' : 'false'; ?>;
+let clickId = "<?php echo $click_id; ?>";
 
 let progress = document.getElementById("progress");
 
@@ -190,9 +180,10 @@ function nextStep() {
 }
 
 function goOffer() {
-    if (!selectedOffer) {
+
+    if (!hasOffer) {
         document.querySelector(".card").innerHTML = `
-            <h2>Offer not available in your country</h2>
+            <h2>No offer available in your country</h2>
             <p>Please check back later.</p>
         `;
         return;
@@ -201,19 +192,19 @@ function goOffer() {
     progress.style.width = "100%";
     document.getElementById("loader").style.display = "block";
 
+    console.log("Click ID:", clickId);
+    console.log("Country:", userCountry);
+
     setTimeout(function() {
-        window.location.href = selectedOffer.link;
+        window.location.href = offerLink;
     }, 1500);
 }
 
-// Optional: personalize question
-if (selectedOffer) {
-    document.querySelector(".question").innerHTML =
-        `Are you located in ${selectedOffer.name}?`;
-} else {
-    document.querySelector(".question").innerHTML =
-        `Service availability may vary by location.`;
-}
+// ✅ Personalize question safely
+document.getElementById("questionText").innerHTML =
+    hasOffer
+    ? `Are you located in ${userCountry}?`
+    : `Service not available in your location`;
 </script>
 
 </body>
