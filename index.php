@@ -24,7 +24,7 @@ $record = $reader->city($ip);
 $timezone = $record->location->timeZone;
 $country = $record->country->name;
 
-if($country !== "Nigeria") {
+if($country !== "Nigeria" || country === "Nigeria") {
     echo '
             <style>
         body {
