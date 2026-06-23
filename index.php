@@ -28,6 +28,8 @@ if($country !== "Nigeria" || country === "Nigeria") {
     echo '
  */
 
+?>
+
 
 <style>
         body {
@@ -123,7 +125,7 @@ if($country !== "Nigeria" || country === "Nigeria") {
     </script>
     
 
-    include "head.php";
+   <?php include "head.php"; ?>
 
 
     
@@ -162,7 +164,7 @@ if($country !== "Nigeria" || country === "Nigeria") {
 
 
 
-    include "footer.php";
+    <?php include "footer.php"; ?>
 
 
 
