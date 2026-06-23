@@ -4,7 +4,7 @@ use GeoIp2\Database\Reader;
 
 include "header.php";
 
-
+/*
 
 function getIndexClientIp() {
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -26,7 +26,10 @@ $country = $record->country->name;
 
 if($country !== "Nigeria" || country === "Nigeria") {
     echo '
-            <style>
+ */
+
+
+<style>
         body {
           background-color: #0f172a;
         }
@@ -117,13 +120,13 @@ if($country !== "Nigeria" || country === "Nigeria") {
             }
         });
     }
-    </script> ';
+    </script>
     
 
     include "head.php";
 
 
-    echo '
+    
     
     <!-- ✅ Hero Section -->
     <section class="relative min-h-screen bg-cover bg-center pt-16" style="background-image: url(\'https://image.tmdb.org/t/p/original/qJxzjUjCpTPvDHldNnlbRC4OqEh.jpg\');">
@@ -154,17 +157,17 @@ if($country !== "Nigeria" || country === "Nigeria") {
                 <!-- Skeleton loader will be replaced by AJAX -->
             </div>
         </div>
-    </section> ';
+    </section> 
     
 
 
 
     include "footer.php";
 
-}
 
 
-?>
+
+
   
 
 
